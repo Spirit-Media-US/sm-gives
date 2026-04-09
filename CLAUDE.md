@@ -1,52 +1,72 @@
-# Spirit Media Template
+# SM Gives
 
 > **CLAUDE.md belongs in version control — NEVER add it to .gitignore. This file is the shared source of truth for all developers and all Claude Code sessions.**
 
-This site: Spirit Media Template | Repo: github.com/Spirit-Media-US/spirit-media-template | Domain: TBD | Sanity ID: TBD
+This site: SM Gives | Repo: github.com/Spirit-Media-US/sm-gives | Domain: smgives.org | Sanity ID: 6iqqd83h
 
 **Migration protocol:** /home/deploy/bin/tools-api/pipelines/migration/CLAUDE.md
+**Sanity Studio:** https://sm-gives.sanity.studio
+**Netlify Preview:** https://sm-gives.netlify.app
+**Source site:** https://smgives.org/ (WordPress/Bricks Builder on Cloudways)
+
+## Organization Info
+
+- Spirit Media Charities (DBA "SM Gives")
+- 501(c)(3) tax-exempt nonprofit
+- Parent: Spirit Media Inc. (covers all operational costs)
+- Address: 8045 Arco Corporate Drive STE 130, Raleigh, NC 27617
+- Phone: (919) 351-6885
+- Email: office@smgives.org
 
 ## Dev Commands
 
-- `npm run dev` -- local preview
-- `npm run build` -- production build to dist/
+- npm run dev -- local preview at localhost:4331
+- npm run build -- production build to dist/
 
 ## Mandatory -- Before Starting Work
+
 Always start Claude sessions from inside this directory:
 ```
-cd ~/Sites/spirit-media-template && claude
+cd /srv/sites/sm-gives && claude
 ```
-Running Claude from ~/ or ~/Sites/ bypasses this project's CLAUDE.md. A pre-edit hook enforces this, but following the workflow prevents warnings and ensures all project rules are loaded.
 
 Then run: `git checkout dev && git pull origin dev`
 
 ## Stack
 
 - Astro 5 + Tailwind CSS v4
-- Sanity Studio (to be configured per new site)
+- Sanity Studio at sm-gives.sanity.studio
 
-## Purpose
+## Brand
 
-This is the **template repo** used as the starting point for all new SMP client sites. It contains the standard Astro + Tailwind + Sanity scaffold with Lefthook hooks, Biome config, and .gitignore pre-configured.
+- Primary Red: #c2000e
+- Fonts: Urbanist (headings), Montserrat (body), Rubik (accents)
+- Tone: Pastoral, charitable, faith-based nonprofit
 
-When creating a new site, clone this template and customize the CLAUDE.md with the site-specific details (domain, Sanity ID, port, etc.).
+## Key Integrations
 
-## Status -- as of 2026-04-08
+- Givebutter (all donation campaigns — external links, not embedded)
+- Text-to-Give: (833) 255-2177
+- No contact form — email links only
+
+## Status — as of 2026-04-09
 
 ### Completed
-- Astro 5 + Tailwind v4 scaffold
-- Lefthook hooks (block-main-push, large-file blocker, secret scanner)
-- Biome config
-- Standard .gitignore (blocks media, .env, node_modules)
-- Template CLAUDE.md ready for customization
+- Phase 1: Infrastructure (GitHub repo, Sanity project, Netlify site, studio deployed)
+- Phase 2: Content extraction (42 images downloaded, 22 blog posts extracted, design tokens captured)
+
+### In Progress
+- Phase 3: Build all pages in Astro
 
 ### Still Pending
-- None -- this is a template, not a live site
+- Phase 4: Wire Sanity CMS + blog
+- Phase 5-9: QA through client delivery
+
+### Known Issues
+- 5 WhatsApp images from DBM page need manual download (hotlink-protected)
+- agiftofcourage.org (nav "Give" link on source site) is DOWN — replace or remove
 
 ## Rules
 
-- All work goes to the **dev** branch -- never push directly to main
+- All work goes to the **dev** branch — never push directly to main
 - Only merge dev to main when Kevin says "push to main"
-- Every site cloned from this template must have a customized CLAUDE.md
-- netlify.toml must include [[headers]] with CSP and security headers
-- 404 page should have noindex meta tag
