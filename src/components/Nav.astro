@@ -1,56 +1,56 @@
 ---
 const currentPath = Astro.url.pathname;
 const links = [
-	{ label: 'About', href: '/about' },
-	{ label: 'Programs', href: '/#programs' },
-	{ label: 'Blog', href: '/blog' },
-	{ label: 'DBM', href: '/deaf-biblical-ministries' },
+	{ label: 'About', href: '/#about' },
+	{ label: 'Give', href: '/#give-now' },
+	{ label: 'Blogs', href: '/blog' },
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-ink/90 backdrop-blur-sm">
-	<div class="mx-auto max-w-7xl flex items-center justify-between px-6 py-3 lg:px-8">
-		<!-- Logo / Wordmark -->
-		<a href="/" class="flex items-center gap-2 text-white font-heading font-bold text-xl tracking-tight">
-			SM Gives
+<header class="fixed top-0 left-0 right-0 z-50" style="background: rgba(10, 10, 10, 0.28); backdrop-filter: blur(4px);">
+	<div class="mx-auto flex items-center justify-between px-5 py-5" style="max-width: 1300px;">
+		<!-- Logo -->
+		<a href="/" class="flex items-center">
+			<span class="font-sans font-bold text-off-white text-lg uppercase tracking-wider">Spirit Media Charities</span>
 		</a>
 
 		<!-- Desktop nav -->
-		<nav class="hidden md:flex items-center gap-6">
+		<nav class="hidden md:flex items-center" style="gap: 30px;">
 			{links.map(link => (
 				<a
 					href={link.href}
-					class="text-sm font-medium text-stone-300 hover:text-white transition-colors"
+					class="font-sans font-bold text-off-white uppercase text-sm tracking-wider hover:text-white transition-colors"
+					style="font-size: 20px;"
 				>
 					{link.label}
 				</a>
 			))}
-			<a href="/#give-now" class="btn-primary text-sm py-2 px-5">Give Now</a>
+			<a href="/#give-now" class="btn-primary" style="padding: 12px 24px; font-size: 14px;">Give Now</a>
 		</nav>
 
 		<!-- Mobile hamburger -->
 		<button
 			id="mobile-menu-btn"
-			class="md:hidden text-white p-2"
+			class="md:hidden text-off-white p-2"
 			aria-label="Open menu"
 			aria-expanded="false"
 		>
-			<svg id="hamburger-icon" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+			<svg id="hamburger-icon" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
 			</svg>
-			<svg id="close-icon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+			<svg id="close-icon" class="w-7 h-7 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
 			</svg>
 		</button>
 	</div>
 
-	<!-- Mobile menu panel -->
-	<div id="mobile-menu" class="hidden md:hidden bg-ink/95 border-t border-white/10 px-6 pb-6">
-		<nav class="flex flex-col gap-4 pt-4">
+	<!-- Mobile menu -->
+	<div id="mobile-menu" class="hidden md:hidden px-5 pb-6" style="background: rgba(10, 10, 10, 0.95);">
+		<nav class="flex flex-col gap-5 pt-4">
 			{links.map(link => (
 				<a
 					href={link.href}
-					class="text-base font-medium text-stone-300 hover:text-white transition-colors mobile-nav-link"
+					class="font-sans font-bold text-off-white uppercase text-base tracking-wider mobile-nav-link"
 				>
 					{link.label}
 				</a>
@@ -59,9 +59,6 @@ const links = [
 		</nav>
 	</div>
 </header>
-
-<!-- Spacer for fixed header -->
-<div class="h-14"></div>
 
 <script>
 const btn = document.getElementById('mobile-menu-btn');
@@ -76,7 +73,6 @@ btn?.addEventListener('click', () => {
 	btn?.setAttribute('aria-expanded', String(open));
 });
 
-// Close on link click
 document.querySelectorAll('.mobile-nav-link').forEach(link => {
 	link.addEventListener('click', () => {
 		menu?.classList.add('hidden');
