@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const students = [
+	{ name: 'Rahim & Rejikul', story: 'Muslim brothers; father deceased, mother remarried; raised by grandmother.' },
+	{ name: 'Shingmei', story: 'Phom tribe member from a remote village.' },
+	{ name: 'Anjana', story: 'Hindu girl from Nepal; mother blind, father disabled.' },
+	{ name: 'Tsaying', story: '5-year-old from Sangtam tribe; parents are laborers.' },
+	{ name: 'Berila', story: 'Yimkhung tribe member; parents are cultivators.' },
+	{ name: 'Sukuraj', story: '10-year-old from Assam; father is a daily wage laborer.' },
+	{ name: 'Ekhoudiheing', story: 'From Manipur; parents cannot afford education.' },
+	{ name: 'Jangminlun', story: 'From Peren District; parents are laborers.' },
+	{ name: 'Kana', story: '7-year-old deaf girl; abandoned by her father.' },
+	{ name: 'Phyobeni', story: 'Multiple deaf family members; parents are illiterate.' },
+	{ name: 'Nang Kana', story: '12-year-old from a Buddhist family in Assam.' },
+	{ name: 'Rhythm', story: '10-year-old girl; deaf with epilepsy.' },
+];
+---
+
+<Layout
+	title="Deaf Biblical Ministries — SM Gives"
+	description="Join generous partners in sponsoring 13 deaf students at Deaf Biblical Ministries in Nagaland, India. Education, healthcare, housing, and spiritual guidance."
+>
+	<Fragment slot="head">
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "WebPage",
+			"name": "Deaf Biblical Ministries",
+			"description": "Sponsoring deaf students at Deaf Biblical Ministries in Nagaland, India.",
+			"url": "https://smgives.org/deaf-biblical-ministries",
+			"isPartOf": { "@type": "WebSite", "name": "SM Gives", "url": "https://smgives.org" }
+		})}></script>
+	</Fragment>
+
+	<main id="main-content">
+
+		<!-- Hero -->
+		<section class="bg-stone-50 px-6 py-16 lg:py-24 lg:px-8">
+			<div class="mx-auto max-w-4xl text-center">
+				<p class="eyebrow eyebrow-red mb-4">Our Mission</p>
+				<h1 class="type-hero text-ink-soft">Deaf Biblical Ministries<br />in Nagaland, India</h1>
+				<p class="mt-6 type-body-lg text-stone-600 max-w-2xl mx-auto">
+					A school providing education, healthcare, housing, and spiritual guidance
+					exclusively to deaf and poor students. Monthly sponsorship costs just <strong>$25 per student</strong>.
+				</p>
+				<div class="mt-8">
+					<a href="https://givebutter.com/DeafBiblicalMinistry" target="_blank" rel="noopener noreferrer" class="btn-primary">
+						Sponsor a Student &rarr;
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Students Grid -->
+		<section class="bg-white py-16 lg:py-24 px-6 lg:px-8">
+			<div class="mx-auto max-w-5xl">
+				<div class="text-center mb-12">
+					<p class="eyebrow eyebrow-red mb-3">Meet the Students</p>
+					<h2 class="type-section text-ink-soft">13 Children We Sponsor</h2>
+				</div>
+
+				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+					{students.map((student) => (
+						<div class="bg-stone-50 rounded-2xl border border-stone-200 p-6">
+							<div class="w-10 h-10 rounded-full bg-red/10 flex items-center justify-center mb-3">
+								<svg class="w-5 h-5 text-red" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+								</svg>
+							</div>
+							<h3 class="font-heading font-bold text-ink-soft mb-1">{student.name}</h3>
+							<p class="text-stone-600 text-sm leading-relaxed">{student.story}</p>
+						</div>
+					))}
+				</div>
+
+				<div class="text-center mt-12">
+					<a href="https://givebutter.com/DeafBiblicalMinistry" target="_blank" rel="noopener noreferrer" class="btn-primary">
+						Sponsor Students Today &rarr;
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Donation Methods -->
+		<section class="bg-stone-100 py-12 lg:py-16 px-6 lg:px-8">
+			<div class="mx-auto max-w-4xl">
+				<h2 class="type-section text-ink-soft text-center mb-8">Other Ways to Give</h2>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+					<div class="bg-white rounded-2xl p-6 border border-stone-200 text-center">
+						<p class="font-accent font-bold text-red text-sm uppercase tracking-wider mb-2">Text to Give</p>
+						<p class="text-stone-600 text-sm">Text "Give" to</p>
+						<p class="font-heading font-bold text-ink text-xl">(833) 255-2177</p>
+					</div>
+					<div class="bg-white rounded-2xl p-6 border border-stone-200 text-center">
+						<p class="font-accent font-bold text-red text-sm uppercase tracking-wider mb-2">ACH Transfer</p>
+						<p class="text-stone-600 text-xs leading-relaxed">
+							Spirit Media Charities<br />Coastal Federal Credit Union<br />
+							Routing: 253175494<br />Account: 10010001599596
+						</p>
+					</div>
+					<div class="bg-white rounded-2xl p-6 border border-stone-200 text-center">
+						<p class="font-accent font-bold text-red text-sm uppercase tracking-wider mb-2">Mail a Check</p>
+						<p class="text-stone-600 text-xs leading-relaxed">
+							Spirit Media Charities<br />8045 Arco Corporate Drive STE 130<br />Raleigh, NC 27617
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</main>
+</Layout>
