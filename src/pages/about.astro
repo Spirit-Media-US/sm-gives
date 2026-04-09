@@ -1,0 +1,184 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+	title="About — SM Gives"
+	description="SM Gives is a 501(c)(3) tax-exempt nonprofit located in Raleigh, NC. 100% of every gift impacts high need populations around the world."
+>
+	<Fragment slot="head">
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "AboutPage",
+			"name": "About SM Gives",
+			"url": "https://smgives.org/about",
+			"mainEntity": {
+				"@type": "NonprofitOrganization",
+				"name": "Spirit Media Charities",
+				"alternateName": "SM Gives",
+				"description": "501(c)(3) tax-exempt organization empowering people to serve and sharing life giving resources.",
+				"address": {
+					"@type": "PostalAddress",
+					"streetAddress": "8045 Arco Corporate Drive STE 130",
+					"addressLocality": "Raleigh",
+					"addressRegion": "NC",
+					"postalCode": "27617",
+					"addressCountry": "US"
+				},
+				"telephone": "+1-919-351-6885",
+				"email": "office@smgives.org"
+			}
+		})}></script>
+	</Fragment>
+
+	<main id="main-content">
+
+		<!-- Hero -->
+		<section class="bg-stone-50 px-6 py-16 lg:py-24 lg:px-8">
+			<div class="mx-auto max-w-4xl text-center">
+				<p class="eyebrow eyebrow-red mb-4">Who We Are</p>
+				<h1 class="type-hero text-ink-soft">About SM Gives</h1>
+				<p class="mt-6 type-body-lg text-stone-600 max-w-2xl mx-auto">
+					A federally recognized 501(c)(3) tax-exempt organization empowering people to serve
+					and sharing life giving resources with high need populations around the world.
+				</p>
+			</div>
+		</section>
+
+		<!-- Mission -->
+		<section class="bg-white py-16 lg:py-24 px-6 lg:px-8">
+			<div class="mx-auto max-w-5xl">
+				<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+					<div>
+						<p class="eyebrow eyebrow-red mb-3">Our Mission</p>
+						<h2 class="type-section text-ink-soft mb-6">100% of Every Gift</h2>
+						<p class="type-body-lg text-stone-700 leading-relaxed mb-4">
+							SM Gives is a federally recognized 501(c)(3) tax-exempt organization located in Raleigh, North Carolina.
+							All gifts are tax deductible as allowed by law.
+						</p>
+						<p class="type-body-lg text-stone-700 leading-relaxed mb-4">
+							We are the give back charity of Spirit Media Inc. All operational costs are underwritten by Spirit Media Inc.
+						</p>
+						<p class="type-body-lg text-stone-700 leading-relaxed font-semibold">
+							100% of every gift impacts high need populations by empowering people to serve
+							and by sharing life giving resources.
+						</p>
+					</div>
+
+					<div class="space-y-6">
+						<div class="bg-stone-50 rounded-2xl p-8 border border-stone-200">
+							<div class="w-12 h-12 rounded-full bg-red/10 flex items-center justify-center mb-4">
+								<svg class="w-6 h-6 text-red" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+								</svg>
+							</div>
+							<h3 class="font-heading font-bold text-lg text-ink-soft mb-2">Empower People to Serve</h3>
+							<p class="text-stone-600 text-sm leading-relaxed">
+								We believe being present is one of our greatest gifts. We empower people to go, serve,
+								and make a lasting impact in high need populations by being present.
+							</p>
+						</div>
+						<div class="bg-stone-50 rounded-2xl p-8 border border-stone-200">
+							<div class="w-12 h-12 rounded-full bg-red/10 flex items-center justify-center mb-4">
+								<svg class="w-6 h-6 text-red" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+								</svg>
+							</div>
+							<h3 class="font-heading font-bold text-lg text-ink-soft mb-2">Sharing Life Giving Resources</h3>
+							<p class="text-stone-600 text-sm leading-relaxed">
+								We empower generous donors to share life giving resources with high need populations.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Where We Serve -->
+		<section class="bg-stone-100 py-16 lg:py-24 px-6 lg:px-8">
+			<div class="mx-auto max-w-5xl text-center">
+				<p class="eyebrow eyebrow-red mb-3">Our Reach</p>
+				<h2 class="type-section text-ink-soft mb-6">Where We Serve</h2>
+				<p class="type-body-lg text-stone-600 max-w-2xl mx-auto mb-12">
+					Currently sending volunteers and resources to communities in need across the globe.
+				</p>
+
+				<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+					{['India', 'Myanmar', 'Nepal', 'Nigeria', 'Prague', 'Uganda'].map((country) => (
+						<div class="bg-white rounded-xl p-4 border border-stone-200 text-center">
+							<p class="font-heading font-bold text-ink-soft">{country}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- Programs Overview -->
+		<section class="bg-white py-16 lg:py-24 px-6 lg:px-8">
+			<div class="mx-auto max-w-5xl">
+				<div class="text-center mb-12">
+					<p class="eyebrow eyebrow-red mb-3">What We Do</p>
+					<h2 class="type-section text-ink-soft">Our Programs</h2>
+				</div>
+
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+					<div class="bg-stone-50 rounded-2xl p-8 border border-stone-200">
+						<h3 class="font-heading font-bold text-xl text-red mb-3">Sending Volunteers</h3>
+						<p class="text-stone-600 text-sm leading-relaxed">
+							Supporting volunteers serving in India, Myanmar, Nepal, Nigeria, Prague and Uganda.
+							100% of every dollar given goes directly to sending volunteers to the nations.
+						</p>
+					</div>
+					<div class="bg-stone-50 rounded-2xl p-8 border border-stone-200">
+						<h3 class="font-heading font-bold text-xl text-red mb-3">Prayer Room</h3>
+						<p class="text-stone-600 text-sm leading-relaxed">
+							Establishing the first ever International House of Prayer for all Nations
+							in the Raleigh, Durham, Chapel Hill area of North Carolina.
+						</p>
+					</div>
+					<div class="bg-stone-50 rounded-2xl p-8 border border-stone-200">
+						<h3 class="font-heading font-bold text-xl text-red mb-3">Gift of Courage</h3>
+						<p class="text-stone-600 text-sm leading-relaxed">
+							Sharing courage with families fighting cancer. Empowering them with victory over cancer
+							through generous partnerships.
+						</p>
+					</div>
+					<div class="bg-stone-50 rounded-2xl p-8 border border-stone-200">
+						<h3 class="font-heading font-bold text-xl text-red mb-3">Deaf Biblical Ministries</h3>
+						<p class="text-stone-600 text-sm leading-relaxed">
+							Sponsoring 13 deaf students in Nagaland, India with education, healthcare, housing,
+							and spiritual guidance. Just $25/month per student.
+						</p>
+						<a href="/deaf-biblical-ministries" class="inline-block mt-3 text-sm font-semibold text-red hover:underline">
+							Learn more &rarr;
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Contact / CTA -->
+		<section class="bg-red py-16 lg:py-20 px-6 lg:px-8">
+			<div class="mx-auto max-w-3xl text-center">
+				<h2 class="type-section text-white mb-4">Partner With Us</h2>
+				<p class="type-body-lg text-white/80 max-w-xl mx-auto mb-8">
+					Every gift makes a difference. Spirit Media Inc. covers all operational costs so 100% of your gift
+					goes directly to the people and programs you support.
+				</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<a href="/#give-now" class="btn-primary bg-white text-red hover:bg-stone-100">Give Now</a>
+					<a href="mailto:office@smgives.org" class="btn-outline border-white text-white hover:bg-white hover:text-red">
+						Contact Us
+					</a>
+				</div>
+
+				<div class="mt-10 text-white/60 text-sm space-y-1">
+					<p>Spirit Media Charities</p>
+					<p>8045 Arco Corporate Drive STE 130, Raleigh, NC 27617</p>
+					<p><a href="tel:+19193516885" class="hover:text-white transition-colors">(919) 351-6885</a> · <a href="mailto:office@smgives.org" class="hover:text-white transition-colors">office@smgives.org</a></p>
+				</div>
+			</div>
+		</section>
+
+	</main>
+</Layout>
