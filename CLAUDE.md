@@ -61,11 +61,13 @@ Then run: `git checkout dev && git pull origin dev`
 - Hero video uploaded to R2, Givebutter widget embedded
 - Pixel-perfect homepage matching source site
 
-### Still Pending
-- Phase 6: Design refinement (optional improvements via Stitch)
-- Phase 7: Full QA (Lighthouse, cross-browser, form testing)
-- Phase 8: Launch (connect domain smgives.org, DNS, SSL, 301 redirects)
-- Phase 9: Client delivery (email, Sanity invite, roadmap)
+### Completed (continued)
+- Phase 6: Design refinement — responsive clamp() sizing, premium scroll animations, parallax, hover effects
+- Phase 7: QA — Lighthouse Desktop 98/93/92/100, Mobile 80/93/92/100. All links verified. Contrast + heading order fixed.
+
+### Blocked — Needs Kevin
+- Phase 8: Launch — smgives.org custom domain set in Netlify, but DNS zone is NOT in our Cloudflare account. Need to add zone or transfer DNS.
+- Phase 9: Client delivery — UptimeRobot monitor (no API key), Sanity invite (Kevin only at manage.sanity.io)
 
 ### Known Issues
 - 5 WhatsApp images from DBM page need manual download (hotlink-protected)
