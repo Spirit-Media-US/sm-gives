@@ -2,7 +2,7 @@
 const currentPath = Astro.url.pathname;
 const links = [
 	{ label: 'About', href: '/#about' },
-	{ label: 'Give', href: '/#give-now' },
+	{ label: 'Give', href: '/give' },
 	{ label: 'Blogs', href: '/blog' },
 ];
 ---
@@ -25,7 +25,7 @@ const links = [
 					{link.label}
 				</a>
 			))}
-			<a href="/#give-now" class="btn-primary" style="padding: 12px 24px; font-size: 14px;">Give Now</a>
+			<a href="/give" class="btn-primary" style="padding: 12px 24px; font-size: 14px;">Give Now</a>
 		</nav>
 
 		<!-- Mobile hamburger -->
@@ -55,7 +55,7 @@ const links = [
 					{link.label}
 				</a>
 			))}
-			<a href="/#give-now" class="btn-primary text-center mt-2">Give Now</a>
+			<a href="/give" class="btn-primary text-center mt-2">Give Now</a>
 		</nav>
 	</div>
 </header>

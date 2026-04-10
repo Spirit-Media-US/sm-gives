@@ -49,17 +49,15 @@ Then run: `git checkout dev && git pull origin dev`
 - Text-to-Give: (833) 255-2177
 - No contact form — email links only
 
-## Status — as of 2026-04-09
+## Status — as of 2026-04-10
 
 ### Completed
 - Phase 1: Infrastructure (GitHub repo, Sanity project, Netlify site, studio deployed)
 - Phase 2: Content extraction (42 images downloaded, 22 blog posts extracted, design tokens captured)
+- Phase 3: Build all pages in Astro (Home, About, DBM, Blog index + 22 posts, Give Now, 404)
+- Phase 4: Wire Sanity CMS + blog (42 images uploaded, 22 blog posts published, Cloudways URLs replaced with Sanity CDN)
 
 ### In Progress
-- Phase 3: Build all pages in Astro
-
-### Still Pending
-- Phase 4: Wire Sanity CMS + blog
 - Phase 5-9: QA through client delivery
 
 ### Known Issues
