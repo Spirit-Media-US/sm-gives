@@ -137,6 +137,7 @@ const countries = [
 		<!-- ═══ GIVING PROGRAMS (vertical stack, banner images + text below) ═══ -->
 		<section style="background: #f5f5f5; padding: clamp(40px, 8vw, 80px) 20px;">
 			<div class="mx-auto" style="max-width: 1300px;">
+				<h2 class="sr-only">Our Giving Programs</h2>
 				{programs.map((program, i) => (
 					<div class="text-center" style={i > 0 ? 'border-top: 1px solid rgba(0,0,0,0.32); padding-top: 40px; margin-top: 40px;' : ''} data-animate="fade-up" data-delay={String(i * 100)}>
 						<a href={program.link} target="_blank" rel="noopener noreferrer" class="block mx-auto hover-zoom rounded-sm overflow-hidden" style="max-width: 1024px; border: 2px solid #616161;">
