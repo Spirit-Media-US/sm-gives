@@ -56,13 +56,20 @@ Then run: `git checkout dev && git pull origin dev`
 - Phase 2: Content extraction (42 images downloaded, 22 blog posts extracted, design tokens captured)
 - Phase 3: Build all pages in Astro (Home, About, DBM, Blog index + 22 posts, Give Now, 404)
 - Phase 4: Wire Sanity CMS + blog (42 images uploaded, 22 blog posts published, Cloudways URLs replaced with Sanity CDN)
+- Phase 5: QA scans pass, Sanity Studio deployed to sm-gives.sanity.studio, Sanity > Netlify webhook active
+- Responsive design + premium scroll animations added
+- Hero video uploaded to R2, Givebutter widget embedded
+- Pixel-perfect homepage matching source site
 
-### In Progress
-- Phase 5-9: QA through client delivery
+### Still Pending
+- Phase 6: Design refinement (optional improvements via Stitch)
+- Phase 7: Full QA (Lighthouse, cross-browser, form testing)
+- Phase 8: Launch (connect domain smgives.org, DNS, SSL, 301 redirects)
+- Phase 9: Client delivery (email, Sanity invite, roadmap)
 
 ### Known Issues
 - 5 WhatsApp images from DBM page need manual download (hotlink-protected)
-- agiftofcourage.org (nav "Give" link on source site) is DOWN — replace or remove
+- agiftofcourage.org (nav "Give" link on source site) is DOWN — replaced with /give
 
 ## Rules
 
