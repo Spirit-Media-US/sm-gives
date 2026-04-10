@@ -34,25 +34,25 @@ import Layout from '../layouts/Layout.astro';
 	<main id="main-content">
 
 		<!-- Hero -->
-		<section class="relative w-full flex items-center justify-center" style="height: 60vh; background: #111; min-height: 400px;">
+		<section class="relative w-full flex items-center justify-center" style="height: 60vh; background: #111; min-height: 350px;">
 			<div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/50 z-10"></div>
 			<div class="relative z-20 text-center px-5">
-				<p class="font-sans font-bold text-off-white uppercase tracking-widest mb-4" style="font-size: 16px; letter-spacing: 3px;">Who We Are</p>
-				<h1 class="type-hero text-off-white">About</h1>
+				<p class="font-sans font-bold text-off-white uppercase tracking-widest mb-4 hero-reveal" style="font-size: 16px; letter-spacing: 3px;">Who We Are</p>
+				<h1 class="type-hero text-off-white hero-reveal-delayed">About</h1>
 			</div>
 		</section>
 
-		<!-- Mission (matching original about section style) -->
-		<section style="background: rgba(158, 158, 158, 0.25); padding: 80px 20px;">
+		<!-- Mission -->
+		<section style="background: rgba(158, 158, 158, 0.25); padding: clamp(40px, 8vw, 80px) 20px;">
 			<div class="mx-auto" style="max-width: 1300px;">
-				<h2 class="type-section text-ink mb-8">We Are</h2>
+				<h2 class="type-section text-ink mb-8" data-animate="fade-up">We Are</h2>
 				<div style="max-width: 900px;">
-					<p class="font-body text-ink mb-6" style="font-size: 20px; line-height: 1.7;">
+					<p class="font-body text-ink mb-6" style="font-size: clamp(16px, 2vw, 20px); line-height: 1.7;" data-animate="fade-up" data-delay="100">
 						SM Gives is a federally recognized 501 C 3 tax-exempt organization located in Raleigh, North Carolina.
 						All gifts are tax deductible as allowed by law. We are the give back charity of Spirit Media Inc.
 						All operational costs are underwritten by Spirit Media Inc.
 					</p>
-					<p class="font-body text-ink mb-6" style="font-size: 20px; line-height: 1.7; font-weight: 600;">
+					<p class="font-body text-ink mb-6" style="font-size: clamp(16px, 2vw, 20px); line-height: 1.7; font-weight: 600;" data-animate="fade-up" data-delay="200">
 						100% of every gift impacts high need populations by empowering people to serve
 						and by sharing life giving resources.
 					</p>
@@ -61,19 +61,20 @@ import Layout from '../layouts/Layout.astro';
 		</section>
 
 		<!-- Two-column: Empower -->
-		<section class="flex flex-col md:flex-row w-full">
-			<div class="w-full md:w-1/2 flex items-center justify-center text-center" style="background: #000; padding: 80px 40px; min-height: 400px;">
-				<div style="max-width: 500px;">
+		<section class="flex flex-col-reverse md:flex-row w-full">
+			<div class="w-full md:w-1/2 flex items-center justify-center text-center" style="background: #000; padding: clamp(60px, 15vw, 200px) clamp(20px, 4vw, 40px);">
+				<div style="max-width: 500px;" data-animate="fade-right">
 					<h2 class="type-section text-off-white mb-6">Empower People to Serve</h2>
-					<p class="font-body text-off-white/80" style="font-size: 20px; line-height: 1.7;">
+					<p class="font-accent text-off-white/80" style="font-size: clamp(16px, 2vw, 20px); line-height: 1.7;">
 						We believe being present is one of our greatest gifts. We empower people to go, serve,
 						and make a lasting impact in high need populations by being present.
 					</p>
 				</div>
 			</div>
 			<div
-				class="w-full md:w-1/2 bg-cover bg-center"
-				style="background-image: url('https://cdn.sanity.io/images/6iqqd83h/production/f7fe7077084ce1b73be3aa927a5d8042276aec16-1024x535.jpg'); min-height: 400px;"
+				class="w-full md:w-1/2 bg-cover bg-center parallax-bg"
+				data-speed="0.1"
+				style="background-image: url('https://cdn.sanity.io/images/6iqqd83h/production/f7fe7077084ce1b73be3aa927a5d8042276aec16-1024x535.jpg'); min-height: clamp(250px, 35vw, 450px);"
 				role="img"
 				aria-label="Church fellowship"
 			></div>
@@ -81,30 +82,31 @@ import Layout from '../layouts/Layout.astro';
 
 		<!-- Two-column: Sharing -->
 		<section class="flex flex-col md:flex-row w-full">
-			<div class="w-full md:w-1/2 flex items-center justify-center text-center" style="background: #c2000e; padding: 80px 40px; min-height: 400px;">
-				<div style="max-width: 500px;">
+			<div class="w-full md:w-1/2 flex items-center justify-center text-center" style="background: #c2000e; padding: clamp(60px, 15vw, 200px) clamp(20px, 4vw, 40px);">
+				<div style="max-width: 500px;" data-animate="fade-left">
 					<h2 class="type-section text-off-white mb-6">Sharing Life Giving Resources</h2>
-					<p class="font-body text-off-white/80" style="font-size: 20px; line-height: 1.7;">
+					<p class="font-accent text-off-white/80" style="font-size: clamp(16px, 2vw, 20px); line-height: 1.7;">
 						We empower generous donors to share life giving resources with high need populations.
 					</p>
 				</div>
 			</div>
 			<div
-				class="w-full md:w-1/2 bg-cover bg-center"
-				style="background-image: url('https://cdn.sanity.io/images/6iqqd83h/production/b7f12363c0b97b2aafa33230c68e66b7b6f15f59-600x378.webp'); min-height: 400px;"
+				class="w-full md:w-1/2 bg-cover bg-center parallax-bg"
+				data-speed="0.1"
+				style="background-image: url('https://cdn.sanity.io/images/6iqqd83h/production/b7f12363c0b97b2aafa33230c68e66b7b6f15f59-600x378.webp'); min-height: clamp(250px, 35vw, 450px);"
 				role="img"
 				aria-label="Volunteers"
 			></div>
 		</section>
 
 		<!-- Where we serve -->
-		<section style="background: #e6e7e8; padding: 80px 20px;">
+		<section style="background: #e6e7e8; padding: clamp(40px, 8vw, 80px) 20px;">
 			<div class="mx-auto text-center" style="max-width: 1300px;">
-				<h2 class="type-section text-ink mb-10">Where We Serve</h2>
-				<div class="flex flex-wrap justify-center gap-0">
+				<h2 class="type-section text-ink mb-10" data-animate="fade-up">Where We Serve</h2>
+				<div class="flex flex-wrap justify-center gap-0" data-animate="stagger">
 					{['India', 'Myanmar', 'Nepal', 'Nigeria', 'Prague', 'Uganda'].map((country) => (
-						<div class="text-center p-8" style="border-top: 2px solid #616161; min-width: 200px; flex: 1;">
-							<p class="font-sans font-bold text-ink uppercase" style="font-size: 28px; letter-spacing: 2px;">{country}</p>
+						<div class="text-center p-4 md:p-8" style="border-top: 2px solid #616161; min-width: 150px; flex: 1;">
+							<p class="font-sans font-bold text-ink uppercase" style="font-size: clamp(18px, 3vw, 28px); letter-spacing: 2px;">{country}</p>
 						</div>
 					))}
 				</div>
@@ -112,19 +114,19 @@ import Layout from '../layouts/Layout.astro';
 		</section>
 
 		<!-- Programs -->
-		<section style="background: #000; padding: 80px 20px;">
+		<section style="background: #000; padding: clamp(40px, 8vw, 80px) 20px;">
 			<div class="mx-auto text-center" style="max-width: 1300px;">
-				<h2 class="type-section text-off-white mb-12">Our Programs</h2>
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+				<h2 class="type-section text-off-white mb-12" data-animate="fade-up">Our Programs</h2>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-0" data-animate="stagger">
 					{[
 						{ title: 'Sending Volunteers', text: 'Supporting volunteers serving in India, Myanmar, Nepal, Nigeria, Prague and Uganda. 100% of every dollar goes directly to sending volunteers.', link: '/#programs' },
 						{ title: 'Prayer Room', text: 'Establishing the first International House of Prayer for all Nations in Raleigh-Durham-Chapel Hill, NC.', link: '/#programs' },
 						{ title: 'Gift of Courage', text: 'Sharing courage with families fighting cancer. Empowering them with victory over cancer.', link: '/#programs' },
 						{ title: 'Deaf Biblical Ministries', text: 'Sponsoring 13 deaf students in Nagaland, India. Education, care, and dignity for $25/month.', link: '/deaf-biblical-ministries' },
 					].map((card) => (
-						<a href={card.link} class="block p-10 text-center hover:bg-white/5 transition-colors" style="border-top: 2px solid #616161;">
-							<h3 class="font-sans font-bold text-off-white uppercase mb-4" style="font-size: 28px; letter-spacing: 2px;">{card.title}</h3>
-							<p class="font-body text-off-white/70 mx-auto" style="font-size: 18px; line-height: 1.6; max-width: 400px;">{card.text}</p>
+						<a href={card.link} class="block p-6 md:p-10 text-center hover:bg-white/5 transition-all duration-500" style="border-top: 2px solid #616161;">
+							<h3 class="font-sans font-bold text-off-white uppercase mb-4" style="font-size: clamp(20px, 3vw, 28px); letter-spacing: 2px;">{card.title}</h3>
+							<p class="font-body text-off-white/70 mx-auto" style="font-size: clamp(15px, 1.8vw, 18px); line-height: 1.6; max-width: 400px;">{card.text}</p>
 						</a>
 					))}
 				</div>
@@ -132,10 +134,10 @@ import Layout from '../layouts/Layout.astro';
 		</section>
 
 		<!-- CTA -->
-		<section style="background: #c2000e; padding: 80px 20px;">
-			<div class="mx-auto text-center" style="max-width: 800px;">
+		<section style="background: #c2000e; padding: clamp(40px, 8vw, 80px) 20px;">
+			<div class="mx-auto text-center" style="max-width: 800px;" data-animate="scale-up" data-duration="slow">
 				<h2 class="type-section text-off-white mb-6">Partner With Us</h2>
-				<p class="font-body text-off-white/80 mb-10" style="font-size: 20px; line-height: 1.7;">
+				<p class="font-body text-off-white/80 mb-10" style="font-size: clamp(16px, 2vw, 20px); line-height: 1.7;">
 					Every gift makes a difference. Spirit Media Inc. covers all operational costs so 100% of your gift
 					goes directly to the people and programs you support.
 				</p>
