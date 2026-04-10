@@ -51,11 +51,11 @@ const campaigns = [
 	<main id="main-content">
 
 		<!-- Hero -->
-		<section class="relative w-full flex items-center justify-center" style="height: 60vh; background: #c2000e; min-height: 400px;">
+		<section class="relative w-full flex items-center justify-center" style="height: 60vh; background: #c2000e; min-height: 350px;">
 			<div class="relative z-20 text-center px-5">
-				<p class="font-sans font-bold text-off-white uppercase tracking-widest mb-4" style="font-size: 16px; letter-spacing: 3px;">100% of Every Gift</p>
-				<h1 class="type-hero text-off-white">Give Now</h1>
-				<p class="font-body text-off-white/80 mt-6 mx-auto" style="font-size: 20px; line-height: 1.7; max-width: 600px;">
+				<p class="font-sans font-bold text-off-white uppercase tracking-widest mb-4 hero-reveal" style="font-size: 16px; letter-spacing: 3px;">100% of Every Gift</p>
+				<h1 class="type-hero text-off-white hero-reveal-delayed">Give Now</h1>
+				<p class="font-body text-off-white/80 mt-6 mx-auto hero-reveal-delayed" style="font-size: clamp(16px, 2vw, 20px); line-height: 1.7; max-width: 600px; animation-delay: 1s;">
 					Spirit Media Inc. covers all operational costs so that 100% of every gift
 					goes to the project being funded.
 				</p>
@@ -63,8 +63,8 @@ const campaigns = [
 		</section>
 
 		<!-- Givebutter Widget -->
-		<section style="background: #ffc0cb; padding: 80px 20px;">
-			<div class="mx-auto text-center flex flex-col items-center" style="max-width: 800px;">
+		<section style="background: #ffc0cb; padding: clamp(40px, 8vw, 80px) 20px;">
+			<div class="mx-auto text-center flex flex-col items-center" style="max-width: 800px;" data-animate="scale-up">
 				<div style="width: 100%; display: flex; justify-content: center;">
 					<givebutter-widget id="gOkdDg"></givebutter-widget>
 				</div>
@@ -72,21 +72,21 @@ const campaigns = [
 		</section>
 
 		<!-- Giving Campaigns -->
-		<section style="background: #000; padding: 80px 20px;">
+		<section style="background: #000; padding: clamp(40px, 8vw, 80px) 20px;">
 			<div class="mx-auto" style="max-width: 1300px;">
-				<h2 class="type-section text-off-white text-center mb-12">Choose a Campaign</h2>
-				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
+				<h2 class="type-section text-off-white text-center mb-12" data-animate="fade-up">Choose a Campaign</h2>
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0" data-animate="stagger">
 					{campaigns.map((campaign) => (
 						<a
 							href={campaign.link}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="block p-10 text-center hover:bg-white/5 transition-colors"
+							class="block p-6 md:p-10 text-center hover:bg-white/10 transition-all duration-500 hover:-translate-y-1"
 							style="border-top: 2px solid #616161;"
 						>
-							<h3 class="font-sans font-bold text-off-white uppercase mb-4" style="font-size: 24px; letter-spacing: 2px;">{campaign.title}</h3>
-							<p class="font-body text-off-white/70 mx-auto mb-6" style="font-size: 18px; line-height: 1.6; max-width: 400px;">{campaign.description}</p>
-							<span class="btn-primary" style="padding: 12px 28px; font-size: 14px;">Donate</span>
+							<h3 class="font-sans font-bold text-off-white uppercase mb-4" style="font-size: clamp(18px, 2.5vw, 24px); letter-spacing: 2px;">{campaign.title}</h3>
+							<p class="font-body text-off-white/70 mx-auto mb-6" style="font-size: clamp(15px, 1.8vw, 18px); line-height: 1.6; max-width: 400px;">{campaign.description}</p>
+							<span class="btn-primary pulse-glow" style="padding: 12px 28px; font-size: 14px;">Donate</span>
 						</a>
 					))}
 				</div>
@@ -94,30 +94,30 @@ const campaigns = [
 		</section>
 
 		<!-- Other Ways to Give -->
-		<section style="background: #ffc0cb; padding: 80px 20px;">
+		<section style="background: #ffc0cb; padding: clamp(40px, 8vw, 80px) 20px;">
 			<div class="mx-auto text-center" style="max-width: 900px;">
-				<h2 class="type-section text-ink mb-10">Other Ways to Give</h2>
+				<h2 class="type-section text-ink mb-10" data-animate="fade-up">Other Ways to Give</h2>
 
-				<div class="flex flex-col md:flex-row gap-8 justify-center items-start text-left mb-10">
+				<div class="flex flex-col md:flex-row gap-6 md:gap-8 justify-center items-start text-left mb-10" data-animate="stagger">
 					<div class="flex-1 text-center">
 						<p class="font-sans font-bold text-ink uppercase mb-3" style="font-size: 16px; letter-spacing: 2px;">Text to Give</p>
-						<p class="font-body text-ink" style="font-size: 18px;">
+						<p class="font-body text-ink" style="font-size: clamp(16px, 2vw, 18px);">
 							Text <strong>"Give"</strong> to<br />
-							<strong style="font-size: 28px;">(833) 255-2177</strong>
+							<strong style="font-size: clamp(22px, 3vw, 28px);">(833) 255-2177</strong>
 						</p>
 					</div>
 					<div class="flex-1 text-center">
 						<p class="font-sans font-bold text-ink uppercase mb-3" style="font-size: 16px; letter-spacing: 2px;">ACH Transfer</p>
-						<p class="font-body text-ink" style="font-size: 16px;">
+						<p class="font-body text-ink" style="font-size: clamp(14px, 1.5vw, 16px);">
 							Spirit Media Charities<br />
 							Coastal Federal Credit Union<br />
-							Routing: 253175494<br />
-							Account: 10010001599596
+							Routing: <span style="color: #c2000e; font-weight: 700;">253175494</span><br />
+							Account: <span style="color: #c2000e; font-weight: 700;">10010001599596</span>
 						</p>
 					</div>
 					<div class="flex-1 text-center">
 						<p class="font-sans font-bold text-ink uppercase mb-3" style="font-size: 16px; letter-spacing: 2px;">Mail a Check</p>
-						<p class="font-body text-ink" style="font-size: 16px;">
+						<p class="font-body text-ink" style="font-size: clamp(14px, 1.5vw, 16px);">
 							Spirit Media Charities<br />
 							8045 Arco Corporate Drive<br />
 							STE 130<br />
@@ -133,9 +133,9 @@ const campaigns = [
 		</section>
 
 		<!-- CTA -->
-		<section style="background: #c2000e; padding: 60px 20px;">
-			<div class="mx-auto text-center" style="max-width: 700px;">
-				<p class="font-body text-off-white/90 mb-6" style="font-size: 20px; line-height: 1.7;">
+		<section style="background: #c2000e; padding: clamp(40px, 6vw, 60px) 20px;">
+			<div class="mx-auto text-center" style="max-width: 700px;" data-animate="blur-in">
+				<p class="font-body text-off-white/90 mb-6" style="font-size: clamp(16px, 2vw, 20px); line-height: 1.7;">
 					Have questions about giving? We'd love to hear from you.
 				</p>
 				<a href="mailto:office@smgives.org" class="btn-primary" style="background: #fff; color: #c2000e;">Contact Us</a>
