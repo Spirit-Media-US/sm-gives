@@ -1,0 +1,146 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const campaigns = [
+	{
+		title: 'Sending Volunteers',
+		description: '100% of every dollar given supports sending volunteers to the nations. Currently, we are sending volunteers to India, Myanmar, Nepal, Nigeria, Prague and Uganda.',
+		link: 'https://givebutter.com/SendingFund',
+	},
+	{
+		title: 'Prayer Room',
+		description: 'Join generous partners in establishing the first ever International House of Prayer for all Nations in the Raleigh, Durham, Chapel Hill area of North Carolina.',
+		link: 'https://givebutter.com/prayrdu',
+	},
+	{
+		title: 'Kevin White International',
+		description: "Join generous partners in underwriting the cost of life giving resources and extending the reach of God's ministry through Kevin around the world.",
+		link: 'https://givebutter.com/KWI',
+	},
+	{
+		title: 'Gift of Courage',
+		description: "Join generous partners in sharing courage with families fighting cancer. Together, let's empower them with victory over cancer.",
+		link: 'https://givebutter.com/givecourage',
+	},
+	{
+		title: 'Deaf Biblical Ministries',
+		description: "Join generous partners in sponsoring 13 deaf students at Deaf Biblical Ministries in Nagaland, India. Together, let's empower them with education, care, and dignity.",
+		link: 'https://givebutter.com/DeafBiblicalMinistry',
+	},
+];
+---
+
+<Layout
+	title="Give Now — SM Gives"
+	description="Give to SM Gives. 100% of your gift goes directly to the project being funded. Donate online, by text, ACH, or check."
+>
+	<Fragment slot="head">
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "DonateAction",
+			"name": "Give to SM Gives",
+			"url": "https://smgives.org/give",
+			"recipient": {
+				"@type": "NonprofitOrganization",
+				"name": "Spirit Media Charities",
+				"alternateName": "SM Gives"
+			}
+		})}></script>
+	</Fragment>
+
+	<main id="main-content">
+
+		<!-- Hero -->
+		<section class="relative w-full flex items-center justify-center" style="height: 60vh; background: #c2000e; min-height: 400px;">
+			<div class="relative z-20 text-center px-5">
+				<p class="font-sans font-bold text-off-white uppercase tracking-widest mb-4" style="font-size: 16px; letter-spacing: 3px;">100% of Every Gift</p>
+				<h1 class="type-hero text-off-white">Give Now</h1>
+				<p class="font-body text-off-white/80 mt-6 mx-auto" style="font-size: 20px; line-height: 1.7; max-width: 600px;">
+					Spirit Media Inc. covers all operational costs so that 100% of every gift
+					goes to the project being funded.
+				</p>
+			</div>
+		</section>
+
+		<!-- Givebutter Widget -->
+		<section style="background: #ffc0cb; padding: 80px 20px;">
+			<div class="mx-auto text-center flex flex-col items-center" style="max-width: 800px;">
+				<div style="width: 100%; display: flex; justify-content: center;">
+					<givebutter-widget id="gOkdDg"></givebutter-widget>
+				</div>
+			</div>
+		</section>
+
+		<!-- Giving Campaigns -->
+		<section style="background: #000; padding: 80px 20px;">
+			<div class="mx-auto" style="max-width: 1300px;">
+				<h2 class="type-section text-off-white text-center mb-12">Choose a Campaign</h2>
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
+					{campaigns.map((campaign) => (
+						<a
+							href={campaign.link}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="block p-10 text-center hover:bg-white/5 transition-colors"
+							style="border-top: 2px solid #616161;"
+						>
+							<h3 class="font-sans font-bold text-off-white uppercase mb-4" style="font-size: 24px; letter-spacing: 2px;">{campaign.title}</h3>
+							<p class="font-body text-off-white/70 mx-auto mb-6" style="font-size: 18px; line-height: 1.6; max-width: 400px;">{campaign.description}</p>
+							<span class="btn-primary" style="padding: 12px 28px; font-size: 14px;">Donate</span>
+						</a>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- Other Ways to Give -->
+		<section style="background: #ffc0cb; padding: 80px 20px;">
+			<div class="mx-auto text-center" style="max-width: 900px;">
+				<h2 class="type-section text-ink mb-10">Other Ways to Give</h2>
+
+				<div class="flex flex-col md:flex-row gap-8 justify-center items-start text-left mb-10">
+					<div class="flex-1 text-center">
+						<p class="font-sans font-bold text-ink uppercase mb-3" style="font-size: 16px; letter-spacing: 2px;">Text to Give</p>
+						<p class="font-body text-ink" style="font-size: 18px;">
+							Text <strong>"Give"</strong> to<br />
+							<strong style="font-size: 28px;">(833) 255-2177</strong>
+						</p>
+					</div>
+					<div class="flex-1 text-center">
+						<p class="font-sans font-bold text-ink uppercase mb-3" style="font-size: 16px; letter-spacing: 2px;">ACH Transfer</p>
+						<p class="font-body text-ink" style="font-size: 16px;">
+							Spirit Media Charities<br />
+							Coastal Federal Credit Union<br />
+							Routing: 253175494<br />
+							Account: 10010001599596
+						</p>
+					</div>
+					<div class="flex-1 text-center">
+						<p class="font-sans font-bold text-ink uppercase mb-3" style="font-size: 16px; letter-spacing: 2px;">Mail a Check</p>
+						<p class="font-body text-ink" style="font-size: 16px;">
+							Spirit Media Charities<br />
+							8045 Arco Corporate Drive<br />
+							STE 130<br />
+							Raleigh, NC 27617
+						</p>
+					</div>
+				</div>
+
+				<p class="font-body text-ink/70" style="font-size: 16px;">
+					All gifts are tax deductible as allowed by the IRS.
+				</p>
+			</div>
+		</section>
+
+		<!-- CTA -->
+		<section style="background: #c2000e; padding: 60px 20px;">
+			<div class="mx-auto text-center" style="max-width: 700px;">
+				<p class="font-body text-off-white/90 mb-6" style="font-size: 20px; line-height: 1.7;">
+					Have questions about giving? We'd love to hear from you.
+				</p>
+				<a href="mailto:office@smgives.org" class="btn-primary" style="background: #fff; color: #c2000e;">Contact Us</a>
+			</div>
+		</section>
+
+	</main>
+</Layout>

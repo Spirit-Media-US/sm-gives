@@ -1,20 +1,324 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import '../styles/global.css';
 
-// Example Sanity fetch — replace with real query for this site
-// import { sanityClient } from '../lib/sanity.ts';
-// const items = await sanityClient.fetch(`*[_type == "post"] | order(_createdAt desc)`);
+const programs = [
+	{
+		title: 'Sending Volunteers',
+		description: '100% of every dollar given supports sending volunteers to the nations. Currently, we are sending volunteers to India, Myanmar, Nepal, Nigeria, Prague and Uganda. With your support we can send more.',
+		link: 'https://givebutter.com/SendingFund',
+		image: 'https://cdn.sanity.io/images/6iqqd83h/production/21bb784f2eaf4ddb86606ac6a358ba8f0cad4660-800x303.jpg',
+	},
+	{
+		title: 'Prayer Room',
+		description: 'Join generous partners in establishing the first ever International House of Prayer for all Nations in the Raleigh, Durham, Chapel Hill area of North Carolina.',
+		link: 'https://givebutter.com/prayrdu',
+		image: 'https://cdn.sanity.io/images/6iqqd83h/production/a81910edfd18eb3d181fcfe0e739fcd7898dd663-1024x341.png',
+	},
+	{
+		title: 'Kevin White International',
+		description: "Join generous partners in underwriting the cost of life giving resources and extending the reach of God's ministry through Kevin around the world. Thank you!",
+		link: 'https://givebutter.com/KWI',
+		image: 'https://cdn.sanity.io/images/6iqqd83h/production/39ae911cfc920d0a8b754325c4d636f61522b05e-1024x383.png',
+	},
+	{
+		title: 'Gift of Courage',
+		description: "Join generous partners in sharing courage with families fighting cancer. Together, let's empower them with victory over cancer.",
+		link: 'https://givebutter.com/givecourage',
+		image: 'https://cdn.sanity.io/images/6iqqd83h/production/2db3a74e6cde18261b52a15b6c54210f7024af7d-1024x341.png',
+	},
+	{
+		title: 'Deaf Biblical Ministries',
+		description: "Join generous partners in sponsoring 13 deaf students at Deaf Biblical Ministries in Nagaland, India. Together, let's empower them with education, care, and dignity.",
+		link: 'https://givebutter.com/DeafBiblicalMinistry',
+		image: 'https://cdn.sanity.io/images/6iqqd83h/production/9b2396ff3d441610b7cd3fd096f0f280adf4e2d5-1024x387.webp',
+	},
+];
+
+const values = [
+	{ word: 'Hope', image: 'https://cdn.sanity.io/images/6iqqd83h/production/78fe83d44fd9be78de44bbbed296dac13a695933-1024x341.jpg' },
+	{ word: 'Love', image: 'https://cdn.sanity.io/images/6iqqd83h/production/66503dc54fb420f6bcad0e052cccc93dfe4f5b0b-791x1024.jpg' },
+	{ word: 'Courage', image: 'https://cdn.sanity.io/images/6iqqd83h/production/63852620e1f766ad133c39e2965ffe99e454f6c7-1024x576.jpg' },
+	{ word: 'Compassion', image: 'https://cdn.sanity.io/images/6iqqd83h/production/ffa94afb91cb624dc6ea68320f315cde2ba03160-1024x683.jpg' },
+	{ word: 'Comfort', image: 'https://cdn.sanity.io/images/6iqqd83h/production/59006c204e29c67aa4138deb445138c8ea80d160-683x1024.jpg' },
+	{ word: 'Salvation', image: 'https://cdn.sanity.io/images/6iqqd83h/production/49dacef292712f9564a495490e30df54d8c3898b-540x360.jpg' },
+	{ word: 'Healing', image: 'https://cdn.sanity.io/images/6iqqd83h/production/76454dde4a7cb859f1031255a69476395c8cba61-1000x528.jpg' },
+	{ word: 'Deliverance', image: 'https://cdn.sanity.io/images/6iqqd83h/production/e729451f90da47d2ceb96270c6f064ba11c4cb80-275x183.jpg' },
+	{ word: 'Restoration', image: 'https://cdn.sanity.io/images/6iqqd83h/production/41833ddcfa23fe2c0d38a882c98efd8f9b2a0a8e-1024x691.jpg' },
+	{ word: 'Wisdom', image: 'https://cdn.sanity.io/images/6iqqd83h/production/57c9b89f458b75ba105326abf59b5169ff40d516-1024x576.jpg' },
+	{ word: 'Leadership', image: 'https://cdn.sanity.io/images/6iqqd83h/production/c0ca374c626574e74c57a410d32157594b072d64-800x533.jpg' },
+	{ word: 'Faith', image: 'https://cdn.sanity.io/images/6iqqd83h/production/839926c34f56789f0e1aab8eb80e9125b6c77008-800x534.webp' },
+];
+
+const countries = [
+	'Afghanistan','Albania','Algeria','Andorra','Angola','Antigua and Barbuda','Argentina','Armenia','Australia','Austria',
+	'Azerbaijan','Bahamas','Bahrain','Bangladesh','Barbados','Belarus','Belgium','Belize','Benin','Bhutan',
+	'Bolivia','Bosnia and Herzegovina','Botswana','Brazil','Brunei','Bulgaria','Burkina Faso','Burundi','Cabo Verde','Cambodia',
+	'Cameroon','Canada','Central African Republic','Chad','Chile','China','Colombia','Comoros','Congo','Costa Rica',
+	'Croatia','Cuba','Cyprus','Czech Republic','Denmark','Djibouti','Dominica','Dominican Republic','Ecuador','Egypt',
+	'El Salvador','Equatorial Guinea','Eritrea','Estonia','Eswatini','Ethiopia','Fiji','Finland','France','Gabon',
+	'Gambia','Georgia','Germany','Ghana','Greece','Grenada','Guatemala','Guinea','Guinea-Bissau','Guyana',
+	'Haiti','Honduras','Hungary','Iceland','India','Indonesia','Iran','Iraq','Ireland','Israel',
+	'Italy','Jamaica','Japan','Jordan','Kazakhstan','Kenya','Kiribati','Kuwait','Kyrgyzstan','Laos',
+	'Latvia','Lebanon','Lesotho','Liberia','Libya','Liechtenstein','Lithuania','Luxembourg','Madagascar','Malawi',
+	'Malaysia','Maldives','Mali','Malta','Marshall Islands','Mauritania','Mauritius','Mexico','Micronesia','Moldova',
+	'Monaco','Mongolia','Montenegro','Morocco','Mozambique','Myanmar','Namibia','Nauru','Nepal','Netherlands',
+	'New Zealand','Nicaragua','Niger','Nigeria','North Korea','North Macedonia','Norway','Oman','Pakistan','Palau',
+	'Palestine','Panama','Papua New Guinea','Paraguay','Peru','Philippines','Poland','Portugal','Qatar','Romania',
+	'Russia','Rwanda','Saint Kitts and Nevis','Saint Lucia','Saint Vincent and the Grenadines','Samoa','San Marino',
+	'Sao Tome and Principe','Saudi Arabia','Senegal','Serbia','Seychelles','Sierra Leone','Singapore','Slovakia','Slovenia',
+	'Solomon Islands','Somalia','South Africa','South Korea','South Sudan','Spain','Sri Lanka','Sudan','Suriname','Sweden',
+	'Switzerland','Syria','Taiwan','Tajikistan','Tanzania','Thailand','Timor-Leste','Togo','Tonga','Trinidad and Tobago',
+	'Tunisia','Turkey','Turkmenistan','Tuvalu','Uganda','Ukraine','United Arab Emirates','United Kingdom','United States',
+	'Uruguay','Uzbekistan','Vanuatu','Vatican City','Venezuela','Vietnam','Yemen','Zambia','Zimbabwe',
+];
 ---
 
-<Layout title="Site Name — Tagline">
-  <main class="flex min-h-screen flex-col items-center justify-center px-6 text-center">
-    <h1 class="text-4xl font-bold mb-4">
-      Site Name
-    </h1>
-    <p class="text-lg max-w-lg">
-      Replace this page with your site content. Connect to Sanity via
-      <code>src/lib/sanity.ts</code> and update the project ID.
-    </p>
-  </main>
+<Layout
+	title="SM Gives — Impact Nations"
+	description="SM Gives is a 501(c)(3) nonprofit empowering people to serve and sharing life giving resources with high need populations around the world."
+>
+	<Fragment slot="head">
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "NonprofitOrganization",
+			"name": "Spirit Media Charities",
+			"alternateName": "SM Gives",
+			"url": "https://smgives.org",
+			"description": "501(c)(3) tax-exempt organization empowering people to serve and sharing life giving resources with high need populations.",
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "8045 Arco Corporate Drive STE 130",
+				"addressLocality": "Raleigh",
+				"addressRegion": "NC",
+				"postalCode": "27617",
+				"addressCountry": "US"
+			},
+			"telephone": "+1-919-351-6885",
+			"email": "office@smgives.org",
+			"parentOrganization": { "@type": "Organization", "name": "Spirit Media Inc." }
+		})}></script>
+	</Fragment>
+
+	<main id="main-content">
+
+		<!-- ═══ HERO — Background Video + "Impact Nations" heading ═══ -->
+		<section class="relative w-full flex items-center justify-center overflow-hidden" style="height: 100vh; margin-top: -105px;">
+			<video autoplay loop playsinline muted class="absolute inset-0 w-full h-full object-cover">
+				<source src="https://assets.spiritmediapublishing.com/spirit-media-charities/hero-video.mp4" type="video/mp4" />
+			</video>
+			<div class="absolute inset-0" style="background: rgba(33,33,33,0.05);"></div>
+			<div class="relative z-20 text-center px-5">
+				<h1 class="type-hero text-off-white">Impact Nations</h1>
+			</div>
+		</section>
+
+		<!-- ═══ COUNTRY NAME SLIDER (red strip, scrolling country names) ═══ -->
+		<section style="background: #c2000e; height: 80px; overflow: hidden;">
+			<div id="country-scroll" class="flex items-center h-full" style="white-space: nowrap;">
+				{[...countries, ...countries].map((name) => (
+					<span class="inline-block px-8 font-heading font-medium text-off-white uppercase" style="font-size: 21px; letter-spacing: 2px;">{name}</span>
+				))}
+			</div>
+		</section>
+
+		<!-- ═══ VALUES CAROUSEL (light gray bg, looping image cards with text) ═══ -->
+		<section class="w-full overflow-hidden" style="background: #e6e7e8;">
+			<div class="flex overflow-x-auto scrollbar-hide" id="values-scroll" style="height: 25vh; min-height: 120px;">
+				{[...values, ...values].map((v) => (
+					<div
+						class="shrink-0 relative flex items-center justify-center"
+						style="width: 20%; min-width: 200px; height: 100%;"
+					>
+						<img src={v.image} alt="" class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+						<div class="absolute inset-0" style="background: rgba(33, 33, 33, 0.6);"></div>
+						<span class="relative z-10 font-sans font-semibold text-white uppercase text-center" style="font-size: 30px; letter-spacing: 2px;">{v.word}</span>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<!-- ═══ GIVING PROGRAMS (vertical stack, banner images + text below) ═══ -->
+		<section style="background: #f5f5f5; padding: 80px 20px;">
+			<div class="mx-auto" style="max-width: 1300px;">
+				{programs.map((program, i) => (
+					<div class="text-center" style={i > 0 ? 'border-top: 1px solid rgba(0,0,0,0.32); padding-top: 40px; margin-top: 40px;' : ''}>
+						<a href={program.link} target="_blank" rel="noopener noreferrer" class="block mx-auto" style="max-width: 1024px; border: 2px solid #616161;">
+							<img src={program.image} alt={program.title} class="w-full" loading="lazy" />
+						</a>
+						<h3 class="font-sans font-bold text-ink uppercase text-center" style="font-size: 40px; padding-top: 20px; letter-spacing: 2px;">{program.title}</h3>
+						<p class="font-body text-ink mx-auto" style="font-size: 20px; text-align: center; max-width: 800px; padding-top: 20px; padding-bottom: 40px;">
+							{program.description}
+						</p>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<!-- ═══ GIVE NOW (pink bg with Givebutter widget) ═══ -->
+		<section id="give-now" style="background: #ffc0cb; padding: 80px 20px;">
+			<div class="mx-auto text-center flex flex-col items-center" style="max-width: 800px;">
+				<h2 class="type-section text-ink mb-8">Give Now</h2>
+				<div style="width: 100%; display: flex; justify-content: center;">
+					<givebutter-widget id="gOkdDg"></givebutter-widget>
+				</div>
+			</div>
+		</section>
+
+		<!-- ═══ ABOUT SECTION (centered, logo below heading) ═══ -->
+		<section id="about" style="background: rgba(158, 158, 158, 0.25); padding: 60px 20px;">
+			<div class="mx-auto text-center" style="max-width: 1300px;">
+				<p class="font-accent uppercase mb-4" style="font-size: 16px; color: #f44336;">about</p>
+				<h2 class="type-section text-ink mb-4">We Are</h2>
+				<img
+					src="https://cdn.sanity.io/images/6iqqd83h/production/39ebed6f22528f218129e9d3b4437e99fde707c0-1024x239.png"
+					alt="SM Gives"
+					class="mx-auto mb-6"
+					style="width: 40%; max-width: 400px;"
+				/>
+				<p class="font-body text-ink mx-auto" style="font-size: 20px; text-align: center; max-width: 800px; padding: 40px 0;">
+					SM Gives is a federally recognized 501 C 3 tax-exempt organization located in Raleigh, North Carolina.
+					All gifts are tax deductible as allowed by law. We are the give back charity of Spirit Media Inc.
+					All operational costs are underwritten by Spirit Media Inc. 100% of every gift impacts high need
+					populations by empowering people to serve and by sharing life giving resources.
+				</p>
+			</div>
+		</section>
+
+		<!-- ═══ TWO-COLUMN: Empower People to Serve (black + image) ═══ -->
+		<section class="flex flex-col-reverse md:flex-row w-full">
+			<div class="w-full md:w-1/2 flex items-center justify-center text-center empow-text" style="background: #000; padding: 280px 40px;">
+				<div style="max-width: 500px;">
+					<h2 class="type-section text-off-white mb-6">Empower People to Serve</h2>
+					<p class="font-accent text-off-white/80" style="font-size: 20px; line-height: 1.7;">
+						We believe being present is one of our greatest gifts. We empower people to go, serve,
+						and make a lasting impact in high need populations by being present.
+					</p>
+				</div>
+			</div>
+			<div
+				class="w-full md:w-1/2 bg-cover bg-center empow-img"
+				style="background-image: url('https://cdn.sanity.io/images/6iqqd83h/production/f7fe7077084ce1b73be3aa927a5d8042276aec16-1024x535.jpg'); min-height: 450px;"
+				role="img"
+				aria-label="Church fellowship"
+			></div>
+		</section>
+
+		<!-- ═══ TWO-COLUMN: Sharing Life Giving Resources (red + image) ═══ -->
+		<section class="flex flex-col md:flex-row w-full">
+			<div class="w-full md:w-1/2 flex items-center justify-center text-center empow-text" style="background: #c2000e; padding: 280px 40px;">
+				<div style="max-width: 500px;">
+					<h2 class="type-section text-off-white mb-6">Sharing Life Giving Resources</h2>
+					<p class="font-accent text-off-white/80" style="font-size: 20px; line-height: 1.7;">
+						We empower generous donors to share life giving resources with high need populations.
+					</p>
+					<a href="mailto:info@smgives.org" class="inline-block mt-6 text-off-white underline font-accent" style="font-size: 18px;">For more information contact us</a>
+				</div>
+			</div>
+			<div
+				class="w-full md:w-1/2 bg-cover bg-center empow-img"
+				style="background-image: url('https://cdn.sanity.io/images/6iqqd83h/production/b7f12363c0b97b2aafa33230c68e66b7b6f15f59-600x378.webp'); min-height: 450px;"
+				role="img"
+				aria-label="Volunteers working at humanitarian aid center"
+			></div>
+		</section>
+
+		<!-- ═══ DONATION METHODS (bordered container, 60/40 split) ═══ -->
+		<section style="padding: 160px 20px;">
+			<div class="mx-auto" style="max-width: 1300px; border: 1px solid #000;">
+				<div class="flex flex-col md:flex-row">
+					<!-- Left 60% — methods -->
+					<div class="w-full md:w-3/5 p-10">
+						<a href="/give" class="btn-primary mb-8" style="font-size: 35px; letter-spacing: 4.2px;">Give Now</a>
+						<p class="font-body text-ink mt-6 mb-8" style="font-size: 20px;">
+							Used where needed most or, you can Text "<strong>Give</strong>" to <strong>(833) 255-2177</strong> to donate by phone.
+						</p>
+						<div class="flex flex-col sm:flex-row gap-0">
+							<!-- ACH (pink bg) -->
+							<div class="flex-1 p-6" style="background: #ffc0cb;">
+								<p class="font-body text-ink" style="font-size: 16px;">
+									To donate by ACH transfer, please use this information:<br /><br />
+									<strong>Spirit Media Charities</strong><br /><br />
+									Coastal Federal Credit Union<br />
+									Routing Number: <span style="color: #c2000e; font-weight: 700;">253175494</span><br />
+									Account Number (MICR): <span style="color: #c2000e; font-weight: 700;">10010001599596</span>
+								</p>
+							</div>
+							<!-- Check (black bg) -->
+							<div class="flex-1 p-6" style="background: #000;">
+								<p class="font-body text-off-white" style="font-size: 16px;">
+									To donate by check please use:<br /><br />
+									<strong>Spirit Media Charities</strong><br /><br />
+									8045 Arco Corporate Drive STE 130<br />
+									Raleigh, NC 27617
+								</p>
+							</div>
+						</div>
+						<p class="font-body text-ink/60 mt-4" style="font-size: 14px;">All gifts tax-deductible as allowed by the IRS.</p>
+					</div>
+					<!-- Right 40% — image -->
+					<div
+						class="hidden md:block w-full md:w-2/5 bg-cover bg-center"
+						style="background-image: url('https://cdn.sanity.io/images/6iqqd83h/production/9fe92ee3f956c69ee9db71fae4d60efd67d4b003-1024x560.webp'); min-height: 400px;"
+						role="img"
+						aria-label="Office"
+					></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ═══ 100% OF YOUR GIFT ═══ -->
+		<section style="background: #f5f5f5; padding: 80px 20px;">
+			<div class="mx-auto text-center" style="max-width: 900px;">
+				<h2 class="font-sans font-bold text-ink uppercase" style="font-size: 46px;">100% of Your Gift</h2>
+				<p class="font-body text-ink mx-auto mt-6" style="font-size: 20px; line-height: 1.7; max-width: 800px;">
+					Spirit Media Inc covers all the management cost for Spirit Media Charities so that 100% of every gift goes to the project being funded.
+					On behalf of everyone at Spirit Media, thank you for your generous support!
+				</p>
+			</div>
+		</section>
+
+	</main>
 </Layout>
+
+<style>
+	@media (max-width: 991px) {
+		.empow-text { padding: 160px 20px !important; }
+	}
+	@media (max-width: 767px) {
+		.empow-text { padding: 80px 20px !important; }
+	}
+	@media (max-width: 478px) {
+		.empow-text { padding: 40px 20px !important; }
+		.empow-img { height: 250px; min-height: 250px !important; }
+		#values-scroll { height: 15vh !important; }
+	}
+</style>
+
+<script>
+	// Country name marquee scroll
+	const countryEl = document.getElementById('country-scroll');
+	if (countryEl) {
+		let pos = 0;
+		const speed = 1;
+		function scrollCountries() {
+			pos += speed;
+			if (pos >= countryEl.scrollWidth / 2) pos = 0;
+			countryEl.style.transform = `translateX(-${pos}px)`;
+			requestAnimationFrame(scrollCountries);
+		}
+		scrollCountries();
+	}
+
+	// Values carousel auto-scroll
+	const scroll = document.getElementById('values-scroll');
+	if (scroll) {
+		let pos = 0;
+		function scrollValues() {
+			pos += 0.5;
+			if (pos >= scroll.scrollWidth / 2) pos = 0;
+			scroll.scrollLeft = pos;
+			requestAnimationFrame(scrollValues);
+		}
+		scrollValues();
+	}
+</script>

@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const students = [
+	{ name: 'Rahim & Rejikul', story: 'Muslim brothers; father deceased, mother remarried; raised by grandmother.' },
+	{ name: 'Shingmei', story: 'Phom tribe member from a remote village.' },
+	{ name: 'Anjana', story: 'Hindu girl from Nepal; mother blind, father disabled.' },
+	{ name: 'Tsaying', story: '5-year-old from Sangtam tribe; parents are laborers.' },
+	{ name: 'Berila', story: 'Yimkhung tribe member; parents are cultivators.' },
+	{ name: 'Sukuraj', story: '10-year-old from Assam; father is a daily wage laborer.' },
+	{ name: 'Ekhoudiheing', story: 'From Manipur; parents cannot afford education.' },
+	{ name: 'Jangminlun', story: 'From Peren District; parents are laborers.' },
+	{ name: 'Kana', story: '7-year-old deaf girl; abandoned by her father.' },
+	{ name: 'Phyobeni', story: 'Multiple deaf family members; parents are illiterate.' },
+	{ name: 'Nang Kana', story: '12-year-old from a Buddhist family in Assam.' },
+	{ name: 'Rhythm', story: '10-year-old girl; deaf with epilepsy.' },
+];
+---
+
+<Layout
+	title="Deaf Biblical Ministries — SM Gives"
+	description="Join generous partners in sponsoring 13 deaf students at Deaf Biblical Ministries in Nagaland, India. Education, healthcare, housing, and spiritual guidance."
+>
+	<Fragment slot="head">
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "WebPage",
+			"name": "Deaf Biblical Ministries",
+			"description": "Sponsoring deaf students at Deaf Biblical Ministries in Nagaland, India.",
+			"url": "https://smgives.org/deaf-biblical-ministries",
+			"isPartOf": { "@type": "WebSite", "name": "SM Gives", "url": "https://smgives.org" }
+		})}></script>
+	</Fragment>
+
+	<main id="main-content">
+
+		<!-- Hero -->
+		<section class="relative w-full flex items-center justify-center" style="height: 60vh; background: #111; min-height: 400px;">
+			<div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/50 z-10"></div>
+			<div class="relative z-20 text-center px-5" style="max-width: 800px;">
+				<p class="font-sans font-bold text-off-white uppercase tracking-widest mb-4" style="font-size: 16px; letter-spacing: 3px;">Our Mission</p>
+				<h1 class="type-hero text-off-white" style="font-size: 60px;">Deaf Biblical Ministries</h1>
+				<p class="font-body text-off-white/70 mt-6" style="font-size: 20px;">Nagaland, India</p>
+			</div>
+		</section>
+
+		<!-- Overview -->
+		<section style="background: rgba(158, 158, 158, 0.25); padding: 80px 20px;">
+			<div class="mx-auto" style="max-width: 900px;">
+				<p class="font-body text-ink mb-6" style="font-size: 20px; line-height: 1.7;">
+					Deaf Biblical Ministries is the first and only ministry and school dedicated to deaf people in Nagaland since 1987.
+					Starting with 5 students, they have served hundreds over 36 years and currently support 70+ students and 200+ deaf church members.
+				</p>
+				<p class="font-body text-ink mb-6" style="font-size: 20px; line-height: 1.7;">
+					The school provides education, healthcare, housing, and spiritual guidance exclusively to deaf and poor students.
+					Monthly sponsorship costs just <strong>$25 per student</strong> (2,000 Rupees).
+				</p>
+				<p class="font-body text-ink" style="font-size: 20px; line-height: 1.7;">
+					SM Gives has sponsored 13 children. With your support, we can sponsor more.
+				</p>
+			</div>
+		</section>
+
+		<!-- Sponsor CTA -->
+		<section style="background: #c2000e; padding: 60px 20px;">
+			<div class="mx-auto text-center" style="max-width: 800px;">
+				<h2 class="type-section text-off-white mb-6">Sponsor a Student</h2>
+				<p class="font-body text-off-white/80 mb-8" style="font-size: 20px;">$25/month provides food, education, and care for a deaf child in Nagaland.</p>
+				<a href="https://givebutter.com/DeafBiblicalMinistry" target="_blank" rel="noopener noreferrer" class="btn-primary" style="background: #fff; color: #c2000e;">
+					Give Now
+				</a>
+			</div>
+		</section>
+
+		<!-- Students -->
+		<section style="background: #000; padding: 80px 20px;">
+			<div class="mx-auto" style="max-width: 1300px;">
+				<h2 class="type-section text-off-white text-center mb-12">The 13 Children We Sponsor</h2>
+				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0">
+					{students.map((student) => (
+						<div class="p-8 text-center" style="border-top: 2px solid #616161;">
+							<h3 class="font-sans font-bold text-off-white uppercase mb-3" style="font-size: 22px; letter-spacing: 2px;">{student.name}</h3>
+							<p class="font-body text-off-white/60" style="font-size: 16px; line-height: 1.6;">{student.story}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- Donation methods -->
+		<section id="give-now" style="background: #ffc0cb; padding: 80px 20px;">
+			<div class="mx-auto text-center" style="max-width: 800px;">
+				<h2 class="type-section text-ink mb-8">Other Ways to Give</h2>
+				<div class="flex flex-col md:flex-row gap-6 justify-center items-start text-center">
+					<div class="flex-1">
+						<p class="font-sans font-bold text-ink uppercase mb-2" style="font-size: 16px; letter-spacing: 2px;">Text to Give</p>
+						<p class="font-body text-ink" style="font-size: 18px;">Text <strong>"Give"</strong> to<br /><strong style="font-size: 24px;">(833) 255-2177</strong></p>
+					</div>
+					<div class="flex-1">
+						<p class="font-sans font-bold text-ink uppercase mb-2" style="font-size: 16px; letter-spacing: 2px;">ACH Transfer</p>
+						<p class="font-body text-ink" style="font-size: 16px;">
+							Spirit Media Charities<br />
+							Coastal Federal Credit Union<br />
+							Routing: 253175494<br />
+							Account: 10010001599596
+						</p>
+					</div>
+					<div class="flex-1">
+						<p class="font-sans font-bold text-ink uppercase mb-2" style="font-size: 16px; letter-spacing: 2px;">Mail a Check</p>
+						<p class="font-body text-ink" style="font-size: 16px;">
+							Spirit Media Charities<br />
+							8045 Arco Corporate Drive<br />
+							STE 130, Raleigh, NC 27617
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</main>
+</Layout>
