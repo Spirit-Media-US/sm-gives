@@ -6,7 +6,7 @@ This site: SM Gives | Repo: github.com/Spirit-Media-US/sm-gives | Domain: smgive
 
 **Migration protocol:** /home/deploy/bin/tools-api/pipelines/migration/CLAUDE.md
 **Sanity Studio:** https://sm-gives.sanity.studio
-**Netlify Preview:** https://sm-gives.netlify.app
+**Cloudflare Pages Preview:** https://dev.sm-gives.pages.dev
 **Source site:** https://smgives.org/ (WordPress/Bricks Builder on Cloudways)
 
 ## Organization Info
@@ -52,11 +52,11 @@ Then run: `git checkout dev && git pull origin dev`
 ## Status — as of 2026-04-10
 
 ### Completed
-- Phase 1: Infrastructure (GitHub repo, Sanity project, Netlify site, studio deployed)
+- Phase 1: Infrastructure (GitHub repo, Sanity project, Cloudflare Pages, studio deployed)
 - Phase 2: Content extraction (42 images downloaded, 22 blog posts extracted, design tokens captured)
 - Phase 3: Build all pages in Astro (Home, About, DBM, Blog index + 22 posts, Give Now, 404)
 - Phase 4: Wire Sanity CMS + blog (42 images uploaded, 22 blog posts published, Cloudways URLs replaced with Sanity CDN)
-- Phase 5: QA scans pass, Sanity Studio deployed to sm-gives.sanity.studio, Sanity > Netlify webhook active
+- Phase 5: QA scans pass, Sanity Studio deployed to sm-gives.sanity.studio
 - Responsive design + premium scroll animations added
 - Hero video uploaded to R2, Givebutter widget embedded
 - Pixel-perfect homepage matching source site
@@ -66,7 +66,7 @@ Then run: `git checkout dev && git pull origin dev`
 - Phase 7: QA — Lighthouse Desktop 98/93/92/100, Mobile 80/93/92/100. All links verified. Contrast + heading order fixed.
 
 ### Blocked — Needs Kevin
-- Phase 8: Launch — smgives.org custom domain set in Netlify, but DNS zone is NOT in our Cloudflare account. Need to add zone or transfer DNS.
+- Phase 8: Launch — smgives.org custom domain needs to be connected in Cloudflare Pages. DNS zone needs to be added to our Cloudflare account.
 - Phase 9: Client delivery — UptimeRobot monitor (no API key), Sanity invite (Kevin only at manage.sanity.io)
 
 ### Known Issues
