@@ -1,33 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { sanityClient } from '../lib/sanity.ts';
 
-const campaigns = [
-	{
-		title: 'Sending Volunteers',
-		description: '100% of every dollar given supports sending volunteers to the nations. Currently, we are sending volunteers to India, Myanmar, Nepal, Nigeria, Prague and Uganda.',
-		link: 'https://givebutter.com/SendingFund',
-	},
-	{
-		title: 'Prayer Room',
-		description: 'Join generous partners in establishing the first ever International House of Prayer for all Nations in the Raleigh, Durham, Chapel Hill area of North Carolina.',
-		link: 'https://givebutter.com/prayrdu',
-	},
-	{
-		title: 'Kevin White International',
-		description: "Join generous partners in underwriting the cost of life giving resources and extending the reach of God's ministry through Kevin around the world.",
-		link: 'https://givebutter.com/KWI',
-	},
-	{
-		title: 'Gift of Courage',
-		description: "Join generous partners in sharing courage with families fighting cancer. Together, let's empower them with victory over cancer.",
-		link: 'https://givebutter.com/givecourage',
-	},
-	{
-		title: 'Deaf Biblical Ministries',
-		description: "Join generous partners in sponsoring 13 deaf students at Deaf Biblical Ministries in Nagaland, India. Together, let's empower them with education, care, and dignity.",
-		link: 'https://givebutter.com/DeafBiblicalMinistry',
-	},
+// Fallback data — used if Sanity is unreachable at build time
+const fallbackCampaigns = [
+	{ title: 'Sending Volunteers', description: '100% of every dollar given supports sending volunteers to the nations. Currently, we are sending volunteers to India, Myanmar, Nepal, Nigeria, Prague and Uganda.', link: 'https://givebutter.com/SendingFund' },
+	{ title: 'Prayer Room', description: 'Join generous partners in establishing the first ever International House of Prayer for all Nations in the Raleigh, Durham, Chapel Hill area of North Carolina.', link: 'https://givebutter.com/prayrdu' },
+	{ title: 'Kevin White International', description: "Join generous partners in underwriting the cost of life giving resources and extending the reach of God's ministry through Kevin around the world.", link: 'https://givebutter.com/KWI' },
+	{ title: 'Gift of Courage', description: "Join generous partners in sharing courage with families fighting cancer. Together, let's empower them with victory over cancer.", link: 'https://givebutter.com/givecourage' },
+	{ title: 'Deaf Biblical Ministries', description: "Join generous partners in sponsoring 13 deaf students at Deaf Biblical Ministries in Nagaland, India. Together, let's empower them with education, care, and dignity.", link: 'https://givebutter.com/DeafBiblicalMinistry' },
 ];
+
+// Fetch from Sanity
+const rawCampaigns = await sanityClient.fetch(`*[_type == "campaign"] | order(order asc) { title, description, link }`);
+const campaigns = rawCampaigns?.length ? rawCampaigns : fallbackCampaigns;
 ---
 
 <Layout

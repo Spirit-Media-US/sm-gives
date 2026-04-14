@@ -1,7 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { sanityClient } from '../lib/sanity.ts';
 
-const students = [
+// Fallback data — used if Sanity is unreachable at build time
+const fallbackStudents = [
 	{ name: 'Rahim & Rejikul', story: 'Muslim brothers; father deceased, mother remarried; raised by grandmother.' },
 	{ name: 'Shingmei', story: 'Phom tribe member from a remote village.' },
 	{ name: 'Anjana', story: 'Hindu girl from Nepal; mother blind, father disabled.' },
@@ -15,6 +17,10 @@ const students = [
 	{ name: 'Nang Kana', story: '12-year-old from a Buddhist family in Assam.' },
 	{ name: 'Rhythm', story: '10-year-old girl; deaf with epilepsy.' },
 ];
+
+// Fetch from Sanity
+const rawStudents = await sanityClient.fetch(`*[_type == "student"] | order(order asc) { name, story }`);
+const students = rawStudents?.length ? rawStudents : fallbackStudents;
 ---
 
 <Layout
