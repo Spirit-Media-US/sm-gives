@@ -65,8 +65,10 @@ Then run: `git checkout dev && git pull origin dev`
 - Phase 6: Design refinement — responsive clamp() sizing, premium scroll animations, parallax, hover effects
 - Phase 7: QA — Lighthouse Desktop 98/93/92/100, Mobile 80/93/92/100. All links verified. Contrast + heading order fixed.
 
+### Completed (Phase 8)
+- Phase 8: Launch — smgives.org custom domain connected, DNS pointing to Cloudflare, SSL active, Astro site live in production.
+
 ### Blocked — Needs Kevin
-- Phase 8: Launch — smgives.org custom domain needs to be connected in Cloudflare Pages. DNS zone needs to be added to our Cloudflare account.
 - Phase 9: Client delivery — UptimeRobot monitor (no API key), Sanity invite (Kevin only at manage.sanity.io)
 
 ### Known Issues

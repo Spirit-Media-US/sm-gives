@@ -32,6 +32,8 @@ const ogImageURL = ogImage.startsWith('http')
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonicalURL} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="theme-color" content="#c2000e" />
 		<meta name="robots" content="index, follow" />
@@ -58,6 +60,15 @@ const ogImageURL = ogImage.startsWith('http')
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImageURL} />
+
+		<!-- Google Analytics (GA4) -->
+		<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-W3R21TNHTX"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-W3R21TNHTX');
+		</script>
 
 		<!-- Givebutter widget library -->
 		<script is:inline async src="https://widgets.givebutter.com/latest.umd.cjs?acct=DE9wuakOnyCAZ7eO&p=other"></script>

@@ -2,6 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import { sanityClient } from '../lib/sanity.ts';
 
+// Student photos from source site (uploaded to Sanity CDN)
+const studentImages: Record<string, string> = {
+	'Phyobeni': 'https://cdn.sanity.io/images/6iqqd83h/production/6ef3ebc9b445c808cf5e9543fe7c77a7224e6f13-1400x788.png?w=400&auto=format',
+	'Rhythm': 'https://cdn.sanity.io/images/6iqqd83h/production/c59cca67bd2082e92fbf228c748c63397a6261d2-1400x788.png?w=400&auto=format',
+	'Nang Kana': 'https://cdn.sanity.io/images/6iqqd83h/production/fd111472d3409a52fbdd30d9a0e8d65e5741f7d0-1400x788.png?w=400&auto=format',
+	'Kana': 'https://cdn.sanity.io/images/6iqqd83h/production/deb100eba7eaf94555772c32da0918cf6670fc37-1400x788.png?w=400&auto=format',
+};
+
 // Fallback data — used if Sanity is unreachable at build time
 const fallbackStudents = [
 	{ name: 'Rahim & Rejikul', story: 'Muslim brothers; father deceased, mother remarried; raised by grandmother.' },
@@ -42,6 +50,7 @@ const students = rawStudents?.length ? rawStudents : fallbackStudents;
 
 		<!-- Hero -->
 		<section class="relative w-full flex items-center justify-center" style="height: 60vh; background: #111; min-height: 400px;">
+			<img src="https://cdn.sanity.io/images/6iqqd83h/production/bff98af8e4de79b55a543993fee830b827087aea-1600x860.jpg?w=1600&auto=format" alt="Students at Deaf Biblical Ministries in Nagaland, India" class="absolute inset-0 w-full h-full object-cover" />
 			<div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/50 z-10"></div>
 			<div class="relative z-20 text-center px-5" style="max-width: 800px;">
 				<p class="font-sans font-bold text-off-white uppercase tracking-widest mb-4" style="font-size: 16px; letter-spacing: 3px;">Our Mission</p>
@@ -83,12 +92,20 @@ const students = rawStudents?.length ? rawStudents : fallbackStudents;
 			<div class="mx-auto" style="max-width: 1300px;">
 				<h2 class="type-section text-off-white text-center mb-12">The 13 Children We Sponsor</h2>
 				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0">
-					{students.map((student) => (
+					{students.map((student) => {
+						const photo = studentImages[student.name];
+						return (
 						<div class="p-8 text-center" style="border-top: 2px solid #616161;">
+							{photo && (
+								<div class="mx-auto mb-4 overflow-hidden rounded-xl" style="max-width: 320px;">
+									<img src={photo} alt={student.name} class="w-full h-auto object-cover" loading="lazy" />
+								</div>
+							)}
 							<h3 class="font-sans font-bold text-off-white uppercase mb-3" style="font-size: 22px; letter-spacing: 2px;">{student.name}</h3>
 							<p class="font-body text-off-white/60" style="font-size: 16px; line-height: 1.6;">{student.story}</p>
 						</div>
-					))}
+						);
+					})}
 				</div>
 			</div>
 		</section>

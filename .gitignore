@@ -11,8 +11,11 @@ node_modules/
 
 # Media files — never commit to git
 *.jpg
+!public/og-default.jpg
 *.jpeg
 *.png
+!public/favicon-32.png
+!public/apple-touch-icon.png
 *.gif
 *.webp
 *.svg
