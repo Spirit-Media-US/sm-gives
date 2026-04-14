@@ -1,40 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { sanityClient, urlFor } from '../lib/sanity.ts';
 
-const programs = [
-	{
-		title: 'Sending Volunteers',
-		description: '100% of every dollar given supports sending volunteers to the nations. Currently, we are sending volunteers to India, Myanmar, Nepal, Nigeria, Prague and Uganda. With your support we can send more.',
-		link: 'https://givebutter.com/SendingFund',
-		image: 'https://cdn.sanity.io/images/6iqqd83h/production/21bb784f2eaf4ddb86606ac6a358ba8f0cad4660-800x303.jpg',
-	},
-	{
-		title: 'Prayer Room',
-		description: 'Join generous partners in establishing the first ever International House of Prayer for all Nations in the Raleigh, Durham, Chapel Hill area of North Carolina.',
-		link: 'https://givebutter.com/prayrdu',
-		image: 'https://cdn.sanity.io/images/6iqqd83h/production/a81910edfd18eb3d181fcfe0e739fcd7898dd663-1024x341.png',
-	},
-	{
-		title: 'Kevin White International',
-		description: "Join generous partners in underwriting the cost of life giving resources and extending the reach of God's ministry through Kevin around the world. Thank you!",
-		link: 'https://givebutter.com/KWI',
-		image: 'https://cdn.sanity.io/images/6iqqd83h/production/39ae911cfc920d0a8b754325c4d636f61522b05e-1024x383.png',
-	},
-	{
-		title: 'Gift of Courage',
-		description: "Join generous partners in sharing courage with families fighting cancer. Together, let's empower them with victory over cancer.",
-		link: 'https://givebutter.com/givecourage',
-		image: 'https://cdn.sanity.io/images/6iqqd83h/production/2db3a74e6cde18261b52a15b6c54210f7024af7d-1024x341.png',
-	},
-	{
-		title: 'Deaf Biblical Ministries',
-		description: "Join generous partners in sponsoring 13 deaf students at Deaf Biblical Ministries in Nagaland, India. Together, let's empower them with education, care, and dignity.",
-		link: 'https://givebutter.com/DeafBiblicalMinistry',
-		image: 'https://cdn.sanity.io/images/6iqqd83h/production/9b2396ff3d441610b7cd3fd096f0f280adf4e2d5-1024x387.webp',
-	},
+// Fallback data — used if Sanity is unreachable at build time
+const fallbackPrograms = [
+	{ title: 'Sending Volunteers', description: '100% of every dollar given supports sending volunteers to the nations. Currently, we are sending volunteers to India, Myanmar, Nepal, Nigeria, Prague and Uganda. With your support we can send more.', link: 'https://givebutter.com/SendingFund', image: 'https://cdn.sanity.io/images/6iqqd83h/production/21bb784f2eaf4ddb86606ac6a358ba8f0cad4660-800x303.jpg' },
+	{ title: 'Prayer Room', description: 'Join generous partners in establishing the first ever International House of Prayer for all Nations in the Raleigh, Durham, Chapel Hill area of North Carolina.', link: 'https://givebutter.com/prayrdu', image: 'https://cdn.sanity.io/images/6iqqd83h/production/a81910edfd18eb3d181fcfe0e739fcd7898dd663-1024x341.png' },
+	{ title: 'Kevin White International', description: "Join generous partners in underwriting the cost of life giving resources and extending the reach of God's ministry through Kevin around the world. Thank you!", link: 'https://givebutter.com/KWI', image: 'https://cdn.sanity.io/images/6iqqd83h/production/39ae911cfc920d0a8b754325c4d636f61522b05e-1024x383.png' },
+	{ title: 'Gift of Courage', description: "Join generous partners in sharing courage with families fighting cancer. Together, let's empower them with victory over cancer.", link: 'https://givebutter.com/givecourage', image: 'https://cdn.sanity.io/images/6iqqd83h/production/2db3a74e6cde18261b52a15b6c54210f7024af7d-1024x341.png' },
+	{ title: 'Deaf Biblical Ministries', description: "Join generous partners in sponsoring 13 deaf students at Deaf Biblical Ministries in Nagaland, India. Together, let's empower them with education, care, and dignity.", link: 'https://givebutter.com/DeafBiblicalMinistry', image: 'https://cdn.sanity.io/images/6iqqd83h/production/9b2396ff3d441610b7cd3fd096f0f280adf4e2d5-1024x387.webp' },
 ];
-
-const values = [
+const fallbackValues = [
 	{ word: 'Hope', image: 'https://cdn.sanity.io/images/6iqqd83h/production/78fe83d44fd9be78de44bbbed296dac13a695933-1024x341.jpg' },
 	{ word: 'Love', image: 'https://cdn.sanity.io/images/6iqqd83h/production/66503dc54fb420f6bcad0e052cccc93dfe4f5b0b-791x1024.jpg' },
 	{ word: 'Courage', image: 'https://cdn.sanity.io/images/6iqqd83h/production/63852620e1f766ad133c39e2965ffe99e454f6c7-1024x576.jpg' },
@@ -48,6 +24,18 @@ const values = [
 	{ word: 'Leadership', image: 'https://cdn.sanity.io/images/6iqqd83h/production/c0ca374c626574e74c57a410d32157594b072d64-800x533.jpg' },
 	{ word: 'Faith', image: 'https://cdn.sanity.io/images/6iqqd83h/production/839926c34f56789f0e1aab8eb80e9125b6c77008-800x534.webp' },
 ];
+
+// Fetch from Sanity
+const [rawPrograms, rawValues] = await Promise.all([
+	sanityClient.fetch(`*[_type == "program"] | order(order asc) { title, description, link, "image": image.asset->url }`),
+	sanityClient.fetch(`*[_type == "orgValue"] | order(order asc) { word, "image": image.asset->url }`),
+]);
+
+const programs = (rawPrograms?.length ? rawPrograms : fallbackPrograms).map((p: any) => ({
+	...p,
+	image: p.image || fallbackPrograms.find((f: any) => f.title === p.title)?.image || '',
+}));
+const values = rawValues?.length ? rawValues : fallbackValues;
 
 const countries = [
 	'Afghanistan','Albania','Algeria','Andorra','Angola','Antigua and Barbuda','Argentina','Armenia','Australia','Austria',
