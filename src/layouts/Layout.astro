@@ -59,6 +59,15 @@ const ogImageURL = ogImage.startsWith('http')
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImageURL} />
 
+		<!-- Google Analytics (GA4) -->
+		<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-W3R21TNHTX"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-W3R21TNHTX');
+		</script>
+
 		<!-- Givebutter widget library -->
 		<script is:inline async src="https://widgets.givebutter.com/latest.umd.cjs?acct=DE9wuakOnyCAZ7eO&p=other"></script>
 
