@@ -39,26 +39,9 @@ const ogImageURL = ogImage.startsWith('http')
 		<meta name="robots" content="index, follow" />
 		<title>{title}</title>
 
-		<!-- Google Fonts: Urbanist + Montserrat + Rubik (non-blocking) -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			rel="preload"
-			as="style"
-			href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Urbanist:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Urbanist:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap"
-			rel="stylesheet"
-			media="print"
-			onload="this.media='all'"
-		/>
-		<noscript>
-			<link
-				href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Urbanist:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap"
-				rel="stylesheet"
-			/>
-		</noscript>
+		<!-- Self-hosted fonts from R2 — preload LCP-critical weights (Open Sans + Urbanist handled globally in global.css) -->
+		<link rel="preload" as="font" type="font/woff2" href="https://assets.spiritmediapublishing.com/fonts/open-sans/open-sans-400.woff2" crossorigin />
+		<link rel="preload" as="font" type="font/woff2" href="https://assets.spiritmediapublishing.com/fonts/open-sans/open-sans-600.woff2" crossorigin />
 
 		<!-- Open Graph -->
 		<meta property="og:site_name" content={siteName} />
