@@ -39,9 +39,10 @@ const ogImageURL = ogImage.startsWith('http')
 		<meta name="robots" content="index, follow" />
 		<title>{title}</title>
 
-		<!-- Self-hosted fonts from R2 — preload LCP-critical weights (Open Sans + Urbanist handled globally in global.css) -->
-		<link rel="preload" as="font" type="font/woff2" href="https://assets.spiritmediapublishing.com/fonts/open-sans/open-sans-400.woff2" crossorigin />
-		<link rel="preload" as="font" type="font/woff2" href="https://assets.spiritmediapublishing.com/fonts/open-sans/open-sans-600.woff2" crossorigin />
+		<!-- Self-hosted fonts from R2 — font-display: swap in global.css loads them without preloading.
+		     Preloading Open Sans competed with hero image for bandwidth and hurt LCP on mobile. -->
+		<!-- DNS hint for font + asset host so first request is faster -->
+		<link rel="preconnect" href="https://assets.spiritmediapublishing.com" crossorigin />
 
 		<!-- Open Graph -->
 		<meta property="og:site_name" content={siteName} />

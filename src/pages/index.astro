@@ -99,14 +99,9 @@ const countries = [
 			media="(min-width: 768px)"
 			fetchpriority="high"
 		/>
-		<!-- Preload Urbanist 800 woff2 (hero headline font — LCP critical) -->
-		<link
-			rel="preload"
-			as="font"
-			type="font/woff2"
-			href="https://assets.spiritmediapublishing.com/fonts/urbanist/urbanist-800.woff2"
-			crossorigin
-		/>
+		<!-- Urbanist 800 loads via font-display: swap in global.css — removing preload gives
+		     the hero IMAGE (actual LCP) exclusive bandwidth on mobile. -->
+
 		<script type="application/ld+json" set:html={JSON.stringify({
 			"@context": "https://schema.org",
 			"@type": "NonprofitOrganization",
@@ -142,9 +137,8 @@ const countries = [
 				height="1080"
 				alt=""
 				fetchpriority="high"
-				decoding="async"
+				decoding="sync"
 				class="absolute inset-0 w-full h-full object-cover"
-				style="transform: scale(1.1);"
 			/>
 			<video
 				id="hero-video"
