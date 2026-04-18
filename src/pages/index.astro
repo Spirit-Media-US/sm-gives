@@ -128,18 +128,24 @@ const countries = [
 		<!-- ═══ HERO — Background Video + "Impact Nations" heading ═══ -->
 		<!-- Fixed px on mobile (iOS hero jerk fix); 65vh on desktop -->
 		<section class="relative w-full flex items-center justify-center overflow-hidden min-h-[500px] md:min-h-[65vh]" style="margin-top: -105px;">
-			<img
-				id="hero-poster"
-				src="https://assets.spiritmediapublishing.com/spirit-media-charities/hero-poster-mobile.webp"
-				srcset="https://assets.spiritmediapublishing.com/spirit-media-charities/hero-poster-mobile.webp 828w, https://assets.spiritmediapublishing.com/spirit-media-charities/hero-poster.webp 1920w"
-				sizes="100vw"
-				width="1920"
-				height="1080"
-				alt=""
-				fetchpriority="high"
-				decoding="sync"
-				class="absolute inset-0 w-full h-full object-cover"
-			/>
+			<picture>
+				<source
+					media="(min-width: 768px)"
+					srcset="https://assets.spiritmediapublishing.com/spirit-media-charities/hero-poster.webp"
+					width="1920"
+					height="1080"
+				/>
+				<img
+					id="hero-poster"
+					src="https://assets.spiritmediapublishing.com/spirit-media-charities/hero-poster-mobile.webp"
+					width="828"
+					height="466"
+					alt=""
+					fetchpriority="high"
+					decoding="sync"
+					class="absolute inset-0 w-full h-full object-cover"
+				/>
+			</picture>
 			<video
 				id="hero-video"
 				loop
