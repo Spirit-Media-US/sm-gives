@@ -68,6 +68,13 @@ Then run: `git checkout dev && git pull origin dev`
 ### Completed (Phase 8)
 - Phase 8: Launch — smgives.org custom domain connected, DNS pointing to Cloudflare, SSL active, Astro site live in production.
 
+### Completed (2026-04-18) — Mobile PSI pass
+- Mobile PSI lifted 94 → 97-99 (best of 6 = 99) on dev preview
+- `astro.config.mjs`: `build.inlineStylesheets: 'always'` (kills 34KB render-blocking CSS)
+- `src/pages/index.astro`: hero `height: 100vh` → `min-h-[500px] md:min-h-[65vh]`; swap srcset → `<picture>`; drop video `poster` so mobile loads only the 26KB hero variant; removed Urbanist preload; LCP img `decoding="sync"`; dropped `transform: scale(1.1)` on poster
+- `src/layouts/Layout.astro`: removed Open Sans preloads (competed with LCP image), added preconnect to R2 asset host
+- Results: FCP 1.7s → 0.9s (best), LCP 2.8s → 2.25s (best), TBT 0ms, CLS 0, Speed Index 3.9s → 0.9s (best)
+
 ### Blocked — Needs Kevin
 - Phase 9: Client delivery — UptimeRobot monitor (no API key), Sanity invite (Kevin only at manage.sanity.io)
 
