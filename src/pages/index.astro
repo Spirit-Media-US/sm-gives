@@ -131,7 +131,8 @@ const countries = [
 	<main id="main-content">
 
 		<!-- ═══ HERO — Background Video + "Impact Nations" heading ═══ -->
-		<section class="relative w-full flex items-center justify-center overflow-hidden" style="height: 100vh; min-height: 500px; margin-top: -105px;">
+		<!-- Fixed px on mobile (iOS hero jerk fix); 65vh on desktop -->
+		<section class="relative w-full flex items-center justify-center overflow-hidden min-h-[500px] md:min-h-[65vh]" style="margin-top: -105px;">
 			<img
 				id="hero-poster"
 				src="https://assets.spiritmediapublishing.com/spirit-media-charities/hero-poster-mobile.webp"
