@@ -4,6 +4,12 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://smgives.org',
+  build: {
+    // Inline all stylesheets directly into the HTML to eliminate the render-blocking
+    // external CSS request. Tailwind ships as a single ~34KB bundle — inlining trades
+    // a round-trip for a small HTML size bump and unblocks first paint on mobile.
+    inlineStylesheets: 'always',
+  },
   integrations: [
     sitemap({
       serialize(item) {
