@@ -74,7 +74,7 @@ const ogImageURL = ogImage.startsWith('http')
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogImageURL} />
 
-		<!-- Google Analytics (GA4) — deferred until idle to improve LCP/TBT -->
+		<!-- Google Analytics (GA4) — deferred until first user interaction to improve LCP/TBT -->
 		<script is:inline>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
@@ -88,11 +88,14 @@ const ogImageURL = ogImage.startsWith('http')
 					s.src = 'https://www.googletagmanager.com/gtag/js?id=G-W3R21TNHTX';
 					document.head.appendChild(s);
 				}
-				if ('requestIdleCallback' in window) {
-					requestIdleCallback(loadGA, { timeout: 4000 });
-				} else {
-					setTimeout(loadGA, 3000);
+				var events = ['scroll','click','touchstart','keydown','mousemove'];
+				function onInteract(){
+					events.forEach(function(e){ window.removeEventListener(e, onInteract, { passive: true }); });
+					loadGA();
 				}
+				events.forEach(function(e){ window.addEventListener(e, onInteract, { passive: true, once: true }); });
+				// Ultimate fallback — load after 8s of inactivity so we still capture pageviews
+				setTimeout(loadGA, 8000);
 			})();
 		</script>
 
