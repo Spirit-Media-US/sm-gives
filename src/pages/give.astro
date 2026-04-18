@@ -21,6 +21,8 @@ const campaigns = rawCampaigns?.length ? rawCampaigns : fallbackCampaigns;
 	description="Give to SM Gives. 100% of your gift goes directly to the project being funded. Donate online, by text, ACH, or check."
 >
 	<Fragment slot="head">
+		<!-- Givebutter widget library — loaded async on the Give page (primary content here) -->
+		<script is:inline async src="https://widgets.givebutter.com/latest.umd.cjs?acct=DE9wuakOnyCAZ7eO&p=other"></script>
 		<script type="application/ld+json" set:html={JSON.stringify({
 			"@context": "https://schema.org",
 			"@type": "DonateAction",
