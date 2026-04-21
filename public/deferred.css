@@ -1,0 +1,101 @@
+/* Non-critical @font-face declarations — async loaded via media="print" onload swap in Layout.astro.
+   Critical weights (Urbanist 800 hero H1, Open Sans 400 body default) are inlined in Layout.astro. */
+
+/* ── Montserrat (sans — used by nav, body text) ── */
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('https://assets.spiritmediapublishing.com/fonts/montserrat/montserrat-400.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url('https://assets.spiritmediapublishing.com/fonts/montserrat/montserrat-500.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url('https://assets.spiritmediapublishing.com/fonts/montserrat/montserrat-600.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('https://assets.spiritmediapublishing.com/fonts/montserrat/montserrat-700.woff2') format('woff2');
+}
+
+/* ── Open Sans (body — 400 is critical, 600/700 below-fold emphasis) ── */
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url('https://assets.spiritmediapublishing.com/fonts/open-sans/open-sans-600.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('https://assets.spiritmediapublishing.com/fonts/open-sans/open-sans-700.woff2') format('woff2');
+}
+
+/* ── Rubik (accent — buttons, labels, btn-primary) ── */
+@font-face {
+	font-family: 'Rubik';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('https://assets.spiritmediapublishing.com/fonts/rubik/rubik-400.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Rubik';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url('https://assets.spiritmediapublishing.com/fonts/rubik/rubik-500.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Rubik';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url('https://assets.spiritmediapublishing.com/fonts/rubik/rubik-600.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Rubik';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('https://assets.spiritmediapublishing.com/fonts/rubik/rubik-700.woff2') format('woff2');
+}
+
+/* ── Urbanist (heading — 800 is critical hero H1, 400/600/700 below-fold headings) ── */
+@font-face {
+	font-family: 'Urbanist';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('https://assets.spiritmediapublishing.com/fonts/urbanist/urbanist-400.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Urbanist';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url('https://assets.spiritmediapublishing.com/fonts/urbanist/urbanist-600.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Urbanist';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('https://assets.spiritmediapublishing.com/fonts/urbanist/urbanist-700.woff2') format('woff2');
+}
