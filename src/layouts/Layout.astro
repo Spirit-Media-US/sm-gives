@@ -1,5 +1,4 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
@@ -86,7 +85,6 @@ const ogImageURL = ogImage.startsWith('http')
 		<!-- Givebutter widget library loaded per-page only where <givebutter-widget> exists -->
 
 		<slot name="head" />
-		<ViewTransitions />
 	</head>
 	<body class="font-sans bg-white text-ink antialiased">
 		<Nav />
