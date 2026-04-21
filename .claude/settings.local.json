@@ -5,6 +5,8 @@
     "netlify",
     "cloudflare",
     "prod-ghl-mcp",
-    "google-docs"
-  ]
+    "google-docs",
+    "playwright"
+  ],
+  "enableAllProjectMcpServers": true
 }
