@@ -378,10 +378,13 @@ const countries = [
 	}
 
 	// Lazy-load hero video AFTER LCP so the poster image is the LCP element.
+	// Desktop/tablet only: mobile skips the 69MB video entirely. The hero poster
+	// image stays as the permanent view below 768px (matches the site's md: breakpoint).
 	(function(){
 		const v = document.getElementById('hero-video');
 		const poster = document.getElementById('hero-poster');
 		if (!v) return;
+		if (!window.matchMedia('(min-width: 768px)').matches) return;
 		function start() {
 			if (v.dataset.loaded) return;
 			v.dataset.loaded = '1';
