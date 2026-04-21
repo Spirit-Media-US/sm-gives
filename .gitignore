@@ -34,3 +34,8 @@ Thumbs.db
 .idea/
 
 .mcp.json
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example

@@ -2,8 +2,11 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
+import cloudflare from "@astrojs/cloudflare";
+
 export default defineConfig({
   site: 'https://smgives.org',
+
   integrations: [
     sitemap({
       serialize(item) {
@@ -20,8 +23,11 @@ export default defineConfig({
       },
     }),
   ],
+
   vite: {
     server: { allowedHosts: ['preview.spiritmediapublishing.com'] },
     plugins: [tailwindcss()],
   },
+
+  adapter: cloudflare()
 });
