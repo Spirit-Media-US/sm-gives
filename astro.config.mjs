@@ -5,10 +5,12 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://smgives.org',
   build: {
-    // Inline all stylesheets directly into the HTML to eliminate the render-blocking
-    // external CSS request. Tailwind ships as a single ~34KB bundle — inlining trades
-    // a round-trip for a small HTML size bump and unblocks first paint on mobile.
-    inlineStylesheets: 'always',
+    // 'auto' (not 'always'): Astro emits external CSS bundles, which scripts/async-css.mjs
+    // rewrites postbuild to media="print" onload swap for non-blocking load. Hand-rolled
+    // critical CSS lives in Layout.astro <style is:inline>. Matches the-kohler-group pattern
+    // (see kohler astro.config.mjs:14). 'always' inlined 34KB which blocked paint 2080ms on
+    // Moto G Slow-4G — diagnosed in 100 Club v4 session 2026-04-21.
+    inlineStylesheets: 'auto',
   },
   integrations: [
     sitemap({
