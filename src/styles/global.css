@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* ─── Self-hosted fonts from R2 ─────────────────────────── */
+/* Font @font-face declarations moved in 100 Club v4 Proposal A (2026-04-21):
+   - Critical (Urbanist 800, Open Sans 400) → inlined in src/layouts/Layout.astro <style is:inline>
+   - Non-critical (13 other weights) → public/deferred.css, loaded async via media=print onload swap
+   See the-kohler-group/src/layouts/Layout.astro:55-96 for the reference pattern. */
+
 /* ─── SM Gives Design Tokens ─────────────────────────────── */
 @theme {
   --font-sans: 'Montserrat', system-ui, sans-serif;

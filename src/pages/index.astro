@@ -31,11 +31,29 @@ const [rawPrograms, rawValues] = await Promise.all([
 	sanityClient.fetch(`*[_type == "orgValue"] | order(order asc) { word, "image": image.asset->url }`),
 ]);
 
-const programs = (rawPrograms?.length ? rawPrograms : fallbackPrograms).map((p: any) => ({
-	...p,
-	image: p.image || fallbackPrograms.find((f: any) => f.title === p.title)?.image || '',
+// Apply Sanity CDN params for WebP + responsive sizing (savings ~1,400 KiB per Lighthouse)
+const withImgParams = (url: string, w = 800) => {
+	if (!url) return '';
+	if (url.includes('cdn.sanity.io') && !url.includes('?')) {
+		return `${url}?w=${w}&fm=webp&q=80`;
+	}
+	return url;
+};
+
+const programs = (rawPrograms?.length ? rawPrograms : fallbackPrograms).map((p: any) => {
+	const rawImage = p.image || fallbackPrograms.find((f: any) => f.title === p.title)?.image || '';
+	return {
+		...p,
+		image: withImgParams(rawImage, 800),
+		imageSrcset: rawImage && rawImage.includes('cdn.sanity.io')
+			? `${rawImage}?w=480&fm=webp&q=75 480w, ${rawImage}?w=800&fm=webp&q=80 800w, ${rawImage}?w=1024&fm=webp&q=80 1024w`
+			: '',
+	};
+});
+const values = (rawValues?.length ? rawValues : fallbackValues).map((v: any) => ({
+	...v,
+	image: withImgParams(v.image, 400),
 }));
-const values = rawValues?.length ? rawValues : fallbackValues;
 
 const countries = [
 	'Afghanistan','Albania','Algeria','Andorra','Angola','Antigua and Barbuda','Argentina','Armenia','Australia','Austria',
@@ -66,6 +84,25 @@ const countries = [
 	description="SM Gives is a 501(c)(3) nonprofit empowering people to serve and sharing life giving resources with high need populations around the world."
 >
 	<Fragment slot="head">
+		<!-- Preload hero poster image (LCP on mobile) — only the mobile variant;
+		     desktop variant is preloaded via <picture> <source> with imagesrcset below -->
+		<link
+			rel="preload"
+			as="image"
+			href="https://assets.spiritmediapublishing.com/spirit-media-charities/hero-poster-mobile.webp"
+			media="(max-width: 767px)"
+			fetchpriority="high"
+		/>
+		<link
+			rel="preload"
+			as="image"
+			href="https://assets.spiritmediapublishing.com/spirit-media-charities/hero-poster.webp"
+			media="(min-width: 768px)"
+			fetchpriority="high"
+		/>
+		<!-- Urbanist 800 loads via font-display: swap in global.css — removing preload gives
+		     the hero IMAGE (actual LCP) exclusive bandwidth on mobile. -->
+
 		<script type="application/ld+json" set:html={JSON.stringify({
 			"@context": "https://schema.org",
 			"@type": "NonprofitOrganization",
@@ -90,10 +127,37 @@ const countries = [
 	<main id="main-content">
 
 		<!-- ═══ HERO — Background Video + "Impact Nations" heading ═══ -->
-		<section class="relative w-full flex items-center justify-center overflow-hidden" style="height: 100vh; min-height: 500px; margin-top: -105px;">
-			<video autoplay loop playsinline muted class="absolute inset-0 w-full h-full object-cover" style="transform: scale(1.1);">
-				<source src="https://assets.spiritmediapublishing.com/spirit-media-charities/hero-video.mp4" type="video/mp4" />
-			</video>
+		<!-- Fixed px on mobile (iOS hero jerk fix); 65vh on desktop -->
+		<section class="relative w-full flex items-center justify-center overflow-hidden min-h-[500px] md:min-h-[65vh]" style="margin-top: -105px;">
+			<picture>
+				<source
+					media="(min-width: 768px)"
+					srcset="https://assets.spiritmediapublishing.com/spirit-media-charities/hero-poster.webp"
+					width="1920"
+					height="1080"
+				/>
+				<img
+					id="hero-poster"
+					src="https://assets.spiritmediapublishing.com/spirit-media-charities/hero-poster-mobile.webp"
+					width="828"
+					height="466"
+					alt=""
+					fetchpriority="high"
+					decoding="sync"
+					class="absolute inset-0 w-full h-full object-cover"
+				/>
+			</picture>
+			<video
+				id="hero-video"
+				loop
+				playsinline
+				muted
+				preload="none"
+				class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700"
+				style="transform: scale(1.1);"
+				data-src="https://assets.spiritmediapublishing.com/spirit-media-charities/hero-video.mp4"
+				aria-hidden="true"
+			></video>
 			<div class="absolute inset-0" style="background: rgba(33,33,33,0.05);"></div>
 			<div class="relative z-20 text-center px-5">
 				<h1 class="type-hero text-shimmer hero-reveal">Impact Nations</h1>
@@ -114,7 +178,7 @@ const countries = [
 			<div class="flex overflow-x-auto scrollbar-hide" id="values-scroll" style="height: clamp(100px, 25vh, 250px);">
 				{[...values, ...values].map((v) => (
 					<div class="shrink-0 relative flex items-center justify-center hover-zoom" style="width: clamp(150px, 20vw, 280px); height: 100%;">
-						<img src={v.image} alt="" class="absolute inset-0 w-full h-full object-cover zoom-target" loading="lazy" />
+						<img src={v.image} alt="" width="400" height="300" class="absolute inset-0 w-full h-full object-cover zoom-target" loading="lazy" decoding="async" />
 						<div class="absolute inset-0 transition-all duration-500" style="background: rgba(33, 33, 33, 0.6);"></div>
 						<span class="relative z-10 font-sans font-semibold text-white uppercase text-center transition-transform duration-500 hover:scale-110" style="font-size: clamp(18px, 3vw, 30px); letter-spacing: 2px;">{v.word}</span>
 					</div>
@@ -129,7 +193,17 @@ const countries = [
 				{programs.map((program, i) => (
 					<div class="text-center" style={i > 0 ? 'border-top: 1px solid rgba(0,0,0,0.32); padding-top: 40px; margin-top: 40px;' : ''} data-animate="fade-up" data-delay={String(i * 100)}>
 						<a href={program.link} target="_blank" rel="noopener noreferrer" class="block mx-auto hover-zoom rounded-sm overflow-hidden" style="max-width: 1024px; border: 2px solid #616161;">
-							<img src={program.image} alt={program.title} class="w-full transition-transform duration-700" loading="lazy" />
+							<img
+								src={program.image}
+								srcset={program.imageSrcset}
+								sizes="(max-width: 767px) 100vw, 1024px"
+								alt={program.title}
+								width="1024"
+								height="341"
+								class="w-full transition-transform duration-700"
+								loading="lazy"
+								decoding="async"
+							/>
 						</a>
 						<h3 class="font-sans font-bold text-ink uppercase text-center" style="font-size: clamp(22px, 4vw, 40px); padding-top: 20px; letter-spacing: 2px;">{program.title}</h3>
 						<p class="font-body text-ink mx-auto" style="font-size: clamp(16px, 2vw, 20px); text-align: center; max-width: 800px; padding-top: 20px; padding-bottom: 40px;">
@@ -156,10 +230,14 @@ const countries = [
 				<p class="font-accent uppercase mb-4" style="font-size: 16px; color: #f44336;" data-animate="fade-down">about</p>
 				<h2 class="type-section text-ink mb-4" data-animate="fade-up" data-delay="100">We Are</h2>
 				<img
-					src="https://cdn.sanity.io/images/6iqqd83h/production/39ebed6f22528f218129e9d3b4437e99fde707c0-1024x239.png"
+					src="https://cdn.sanity.io/images/6iqqd83h/production/39ebed6f22528f218129e9d3b4437e99fde707c0-1024x239.png?w=400&fm=webp&q=80"
 					alt="SM Gives"
+					width="400"
+					height="93"
 					class="mx-auto mb-6"
 					style="width: clamp(200px, 40%, 400px);"
+					loading="lazy"
+					decoding="async"
 					data-animate="scale-up" data-delay="200"
 				/>
 				<p class="font-body text-ink mx-auto" style="font-size: clamp(16px, 2vw, 20px); text-align: center; max-width: 800px; padding: clamp(20px, 4vw, 40px) 0;" data-animate="fade-up" data-delay="300">
@@ -184,7 +262,7 @@ const countries = [
 			</div>
 			<div
 				class="w-full md:w-1/2 bg-cover bg-center empow-img"
-				style="background-image: url('https://cdn.sanity.io/images/6iqqd83h/production/f7fe7077084ce1b73be3aa927a5d8042276aec16-1024x535.jpg'); min-height: clamp(250px, 40vw, 500px);"
+				style="background-image: url('https://cdn.sanity.io/images/6iqqd83h/production/f7fe7077084ce1b73be3aa927a5d8042276aec16-1024x535.jpg?w=1024&fm=webp&q=80'); min-height: clamp(250px, 40vw, 500px);"
 				role="img"
 				aria-label="Church fellowship"
 			></div>
@@ -194,7 +272,7 @@ const countries = [
 		<section class="flex flex-col md:flex-row w-full">
 			<div
 				class="w-full md:w-1/2 bg-cover bg-center empow-img"
-				style="background-image: url('https://cdn.sanity.io/images/6iqqd83h/production/b7f12363c0b97b2aafa33230c68e66b7b6f15f59-600x378.webp'); min-height: clamp(250px, 40vw, 500px);"
+				style="background-image: url('https://cdn.sanity.io/images/6iqqd83h/production/b7f12363c0b97b2aafa33230c68e66b7b6f15f59-600x378.webp?w=800&fm=webp&q=80'); min-height: clamp(250px, 40vw, 500px);"
 				role="img"
 				aria-label="Volunteers working at humanitarian aid center"
 			></div>
@@ -241,7 +319,7 @@ const countries = [
 					</div>
 					<div
 						class="hidden md:block w-full md:w-2/5 bg-cover bg-center"
-						style="background-image: url('https://cdn.sanity.io/images/6iqqd83h/production/9fe92ee3f956c69ee9db71fae4d60efd67d4b003-1024x560.webp'); min-height: 400px;"
+						style="background-image: url('https://cdn.sanity.io/images/6iqqd83h/production/9fe92ee3f956c69ee9db71fae4d60efd67d4b003-1024x560.webp?w=800&fm=webp&q=80'); min-height: 400px;"
 						role="img"
 						aria-label="Office"
 					></div>
@@ -298,4 +376,70 @@ const countries = [
 		}
 		scrollValues();
 	}
+
+	// Lazy-load hero video AFTER LCP so the poster image is the LCP element.
+	// Desktop/tablet only: mobile skips the 69MB video entirely. The hero poster
+	// image stays as the permanent view below 768px (matches the site's md: breakpoint).
+	(function(){
+		const v = document.getElementById('hero-video');
+		const poster = document.getElementById('hero-poster');
+		if (!v) return;
+		if (!window.matchMedia('(min-width: 768px)').matches) return;
+		function start() {
+			if (v.dataset.loaded) return;
+			v.dataset.loaded = '1';
+			const src = v.getAttribute('data-src');
+			if (src) {
+				const s = document.createElement('source');
+				s.src = src;
+				s.type = 'video/mp4';
+				v.appendChild(s);
+				v.load();
+			}
+			v.play().then(() => {
+				v.classList.remove('opacity-0');
+				if (poster) {
+					setTimeout(() => { poster.style.opacity = '0'; }, 700);
+				}
+			}).catch(() => { /* autoplay blocked — poster stays, fine */ });
+		}
+		// Wait until page is idle (after LCP), then start video
+		function schedule() {
+			if ('requestIdleCallback' in window) {
+				requestIdleCallback(start, { timeout: 2500 });
+			} else {
+				setTimeout(start, 1500);
+			}
+		}
+		if (document.readyState === 'complete') schedule();
+		else window.addEventListener('load', schedule, { once: true });
+	})();
+
+	// Lazy-load Givebutter widget ONLY when user scrolls near the Give Now section
+	(function(){
+		const target = document.getElementById('give-now');
+		if (!target) return;
+		let loaded = false;
+		function loadGivebutter() {
+			if (loaded) return; loaded = true;
+			const s = document.createElement('script');
+			s.async = true;
+			s.src = 'https://widgets.givebutter.com/latest.umd.cjs?acct=DE9wuakOnyCAZ7eO&p=other';
+			document.head.appendChild(s);
+		}
+		if ('IntersectionObserver' in window) {
+			const io = new IntersectionObserver((entries) => {
+				entries.forEach(e => {
+					if (e.isIntersecting) { loadGivebutter(); io.disconnect(); }
+				});
+			}, { rootMargin: '400px 0px' });
+			io.observe(target);
+		} else {
+			setTimeout(loadGivebutter, 3000);
+		}
+		// Also trigger if user clicks a Give CTA anywhere on the page
+		document.querySelectorAll('a[href="#give-now"], a[href*="#give-now"]').forEach(a => {
+			a.addEventListener('click', loadGivebutter, { once: true });
+		});
+	})();
 </script>
