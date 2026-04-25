@@ -47,7 +47,7 @@ const ogImageURL = ogImage.startsWith('http')
 		<style is:inline>
 /* @font-face at top level — CSS spec forbids it inside @layer.
    Urbanist 800 = hero H1 LCP font; Open Sans 400 = body default. */
-@font-face{font-family:'Urbanist';font-style:normal;font-weight:800;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/urbanist/urbanist-800.woff2') format('woff2')}
+@font-face{font-family:'Urbanist';font-style:normal;font-weight:800;font-display:optional;src:url('https://assets.spiritmediapublishing.com/fonts/urbanist/urbanist-800.woff2') format('woff2')}
 @font-face{font-family:'Open Sans';font-style:normal;font-weight:400;font-display:swap;src:url('https://assets.spiritmediapublishing.com/fonts/open-sans/open-sans-400.woff2') format('woff2')}
 
 /* @keyframes: also top-level (cannot nest inside @layer) */
@@ -69,9 +69,13 @@ const ogImageURL = ogImage.startsWith('http')
   /* Hero typography — used by <h1> in src/pages/index.astro:163 */
   .type-hero{font-family:'Urbanist',system-ui,sans-serif;font-size:clamp(38px,8vw,80px);font-weight:800;line-height:1.05;text-transform:uppercase;letter-spacing:.02em;text-shadow:1px 1px 0 rgba(0,0,0,.4)}
 
-  /* Hero H1 animations — both applied to same <h1> alongside .type-hero */
-  .text-shimmer{background:linear-gradient(90deg,#f5f5f5 0%,#fff 25%,#f5f5f5 50%,#fff 75%,#f5f5f5 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 4s linear infinite}
-  .hero-reveal{animation:heroReveal 1.2s cubic-bezier(.25,.46,.45,.94) forwards;animation-delay:.3s;opacity:0}
+  /* Hero H1 animations — gated on html.loaded so they fire post-window.load,
+     after Lighthouse has registered LCP. Phase 2I doctrine: "If the animation
+     must stay for visual polish, trigger on window.load (post-LCP), not CSS
+     auto-play." Without this gate, .hero-reveal opacity:0→1 makes Lighthouse
+     wait 1.5s before registering LCP → bimodal 76-97 perf. */
+  html.loaded .text-shimmer{background:linear-gradient(90deg,#f5f5f5 0%,#fff 25%,#f5f5f5 50%,#fff 75%,#f5f5f5 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 4s linear infinite}
+  html.loaded .hero-reveal{animation:heroReveal 1.2s cubic-bezier(.25,.46,.45,.94) forwards;animation-delay:.3s}
 
   /* ── Tailwind utilities used above-the-fold (Nav + hero section) ── */
   .sticky{position:sticky}.relative{position:relative}.absolute{position:absolute}
@@ -142,6 +146,12 @@ const ogImageURL = ogImage.startsWith('http')
 		</script>
 
 		<!-- Givebutter widget library loaded per-page only where <givebutter-widget> exists -->
+
+		<!-- Post-LCP animation gate: hero animations fire only after window.load,
+		     so Lighthouse registers LCP before any opacity transitions begin. -->
+		<script is:inline>
+			window.addEventListener('load', function(){ document.documentElement.classList.add('loaded'); });
+		</script>
 
 		<slot name="head" />
 	</head>
