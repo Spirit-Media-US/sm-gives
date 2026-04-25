@@ -1,5 +1,5 @@
 # [SITE NAME] — Project Status & Knowledge Base
-> Last updated: 2026-04-23
+> Last updated: 2026-04-24
 > **Claude: Read this file before making any statements about project state or touching any code.**
 
 ---
@@ -16,7 +16,7 @@
 
 ---
 
-## Sanity Document Counts (as of 2026-04-23)
+## Sanity Document Counts (as of 2026-04-24)
 | Type | Count | Notes |
 |---|---|---|
 | testimonial | 0 | Live on homepage, fetched from Sanity |
