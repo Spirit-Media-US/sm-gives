@@ -16,7 +16,8 @@ import Layout from '../layouts/Layout.astro';
 				"@type": "NonprofitOrganization",
 				"name": "Spirit Media Charities",
 				"alternateName": "SM Gives",
-				"description": "501(c)(3) tax-exempt organization empowering people to serve and sharing life giving resources.",
+				"url": "https://smgives.org",
+				"description": "501(c)(3) tax-exempt organization empowering people to serve and sharing life giving resources with high need populations.",
 				"address": {
 					"@type": "PostalAddress",
 					"streetAddress": "8045 Arco Corporate Drive STE 130",
@@ -26,7 +27,15 @@ import Layout from '../layouts/Layout.astro';
 					"addressCountry": "US"
 				},
 				"telephone": "+1-919-351-6885",
-				"email": "office@smgives.org"
+				"email": "office@smgives.org",
+				"nonprofitStatus": "Nonprofit501c3",
+				"logo": {
+					"@type": "ImageObject",
+					"url": "https://cdn.sanity.io/images/6iqqd83h/production/39ebed6f22528f218129e9d3b4437e99fde707c0-1024x239.png",
+					"width": 1024,
+					"height": 239
+				},
+				"parentOrganization": { "@type": "Organization", "name": "Spirit Media Inc." }
 			}
 		})}></script>
 	</Fragment>
