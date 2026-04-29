@@ -49,7 +49,7 @@ Then run: `git checkout dev && git pull origin dev`
 - Text-to-Give: (833) 255-2177
 - No contact form — email links only
 
-## Status — as of 2026-04-10
+## Status — as of 2026-04-29
 
 ### Completed
 - Phase 1: Infrastructure (GitHub repo, Sanity project, Cloudflare Pages, studio deployed)
@@ -81,6 +81,22 @@ Then run: `git checkout dev && git pull origin dev`
 ### Known Issues
 - 5 WhatsApp images from DBM page need manual download (hotlink-protected)
 - agiftofcourage.org (nav "Give" link on source site) is DOWN — replaced with /give
+
+### Phase 10 — SEO Audit Implementation (in progress, on dev)
+Three commits stacked on `dev` from a Phase 1 SEO audit pass. All built, deployed to `dev.sm-gives.pages.dev`. Awaiting Kevin's merge to main.
+
+| Commit | Phase | What |
+|---|---|---|
+| `78aa6dd` | 1A + 1B | Homepage NonprofitOrganization JSON-LD enrichment: added `nonprofitStatus: "Nonprofit501c3"`; `logo` upgraded from a resize-parameterized URL string to a structured `ImageObject` (canonical 1024×239 PNG, resize params stripped). |
+| `58f2f6a` | 1C | `/about/` AboutPage `mainEntity` inner Org block synced with the homepage NonprofitOrganization in five coordinated changes: description verbatim match, added `url` (apex, not `/about`), `nonprofitStatus`, `logo` ImageObject, `parentOrganization`. |
+| `6279c78` | 1D | BlogPosting schema enrichment across all 22 posts: `dateModified` from Sanity `_updatedAt`, `mainEntityOfPage` (WebPage with @id), `publisher` upgraded `Organization` → `NonprofitOrganization`, `publisher.logo` ImageObject, parallel `<meta property="article:modified_time">` tag. |
+
+### Phase 10 — Open Items Needing Kevin
+- **Social profile URLs missing.** The footer has no social link row, and Sanity `siteSettings` carries no social URLs. Schemas can't populate `sameAs` (Facebook, Instagram, LinkedIn, etc.) until Kevin shares the canonical handles. Once available, `sameAs` would land on the homepage Organization + the `/about/` Org block.
+- **501(c)(3) EIN missing.** Schema currently asserts `nonprofitStatus: "Nonprofit501c3"` but does not declare a `taxID`. Adding the EIN would strengthen Google's nonprofit-knowledge-graph signals. Kevin to share the EIN if it should be public.
+- **Founder confirmation needed.** Kevin White is the likely founder of Spirit Media Charities, but the schema does not declare a `founder` Person. Parked until confirmed — adding it later is a one-line edit.
+- **PROJECT-STATUS.md is stale generic template** — `REPLACE_PROJECT_ID` placeholders, claims Netlify hosting (wrong, production is Cloudflare Pages), all checkboxes unchecked despite the site being live. Separate cleanup, not strict SEO.
+- **Phase 1E (homepage + /about title rewrites) deferred.** The pastoral, ministry-branded title voice is intentional — keyword-led rewrites would change tone. Kept for Kevin to direct if/when ranking pressure justifies revisiting.
 
 ## Rules
 
