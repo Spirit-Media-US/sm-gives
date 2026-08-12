@@ -84,15 +84,9 @@ const countries = [
 	description="SM Gives is a 501(c)(3) nonprofit empowering people to serve and sharing life giving resources with high need populations around the world."
 >
 	<Fragment slot="head">
-		<!-- Preload hero poster image (LCP on mobile) — only the mobile variant;
-		     desktop variant is preloaded via <picture> <source> with imagesrcset below -->
-		<link
-			rel="preload"
-			as="image"
-			href="https://assets.spiritmediapublishing.com/spirit-media-charities/hero-poster-mobile.webp"
-			media="(max-width: 767px)"
-			fetchpriority="high"
-		/>
+		<!-- Mobile hero is text-only (the H1 is the LCP, painting from the HTML stream
+		     ~1s) so no mobile poster preload — matches SMP. Desktop/tablet (>=768px)
+		     keep the photo hero, preloaded below. (2026-06-19, Kevin) -->
 		<link
 			rel="preload"
 			as="image"
@@ -135,8 +129,8 @@ const countries = [
 
 		<!-- ═══ HERO — Background Video + "Impact Nations" heading ═══ -->
 		<!-- Fixed px on mobile (iOS hero jerk fix); 65vh on desktop -->
-		<section class="relative w-full flex items-center justify-center overflow-hidden min-h-[500px] md:min-h-[65vh]" style="margin-top: -105px;">
-			<picture>
+		<section class="relative w-full flex items-center justify-center overflow-hidden min-h-[500px] md:min-h-[65vh]" style="margin-top: -105px; background-color: #212121;">
+			<picture class="hidden md:block">
 				<source
 					media="(min-width: 768px)"
 					srcset="https://assets.spiritmediapublishing.com/spirit-media-charities/hero-poster.webp"
@@ -150,7 +144,7 @@ const countries = [
 					height="466"
 					alt=""
 					fetchpriority="high"
-					decoding="sync"
+					decoding="async"
 					class="absolute inset-0 w-full h-full object-cover"
 				/>
 			</picture>
@@ -160,14 +154,14 @@ const countries = [
 				playsinline
 				muted
 				preload="none"
-				class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700"
+				class="hidden md:block absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700"
 				style="transform: scale(1.1);"
 				data-src="https://assets.spiritmediapublishing.com/spirit-media-charities/hero-video.mp4"
 				aria-hidden="true"
 			></video>
 			<div class="absolute inset-0" style="background: rgba(33,33,33,0.05);"></div>
 			<div class="relative z-20 text-center px-5">
-				<h1 class="type-hero text-shimmer hero-reveal">Impact Nations</h1>
+				<h1 class="type-hero text-shimmer">Impact Nations</h1>
 			</div>
 		</section>
 
