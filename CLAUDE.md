@@ -15,7 +15,7 @@ This site: SM Gives | Repo: github.com/Spirit-Media-US/sm-gives | Domain: smgive
 - 501(c)(3) tax-exempt nonprofit
 - Parent: Spirit Media Inc. (covers all operational costs)
 - Address: 8045 Arco Corporate Drive STE 130, Raleigh, NC 27617
-- Phone: (919) 351-6885
+- Phone: (888) 800-3744
 - Email: office@smgives.org
 
 ## Dev Commands
@@ -46,7 +46,6 @@ Then run: `git checkout dev && git pull origin dev`
 ## Key Integrations
 
 - Givebutter (all donation campaigns — external links, not embedded)
-- Text-to-Give: (833) 255-2177
 - No contact form — email links only
 
 ## Status — as of 2026-04-29

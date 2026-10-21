@@ -67,14 +67,12 @@ Parent: Spirit Media Inc.
 ## Contact Info
 
 - Address: 8045 Arco Corporate Drive STE 130, Raleigh, NC 27617
-- Phone: (919) 351-6885
+- Phone: (888) 800-3744
 - Email: office@smgives.org / info@smgives.org
-- Text-to-Give: Text "Give" to (833) 255-2177
 
 ## Donation Methods
 
 - Givebutter (primary — external links)
-- Text-to-Give: (833) 255-2177
 - ACH: Spirit Media Charities / Coastal Federal Credit Union / Routing: 253175494 / Account: 10010001599596
 - Check: Spirit Media Charities, 8045 Arco Corporate Drive STE 130, Raleigh, NC 27617
 
