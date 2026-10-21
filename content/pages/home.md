@@ -41,7 +41,7 @@ CTA: https://givebutter.com/DeafBiblicalMinistry
 
 ## About Section (#about)
 
-SM Gives is a federally recognized 501 C 3 tax-exempt organization located in Raleigh, North Carolina. All gifts are tax deductible as allowed by law. We are the give back charity of Spirit Media Inc. All operational costs are underwritten by Spirit Media Inc. 100% of every gift impacts high need populations by empowering people to serve and by sharing life giving resources.
+SM Gives is a federally recognized 501 C 3 tax-exempt organization located in Cary, North Carolina. All gifts are tax deductible as allowed by law. We are the give back charity of Spirit Media Inc. All operational costs are underwritten by Spirit Media Inc. 100% of every gift impacts high need populations by empowering people to serve and by sharing life giving resources.
 
 ### Core Values (Two Columns)
 
