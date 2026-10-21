@@ -66,7 +66,7 @@ Parent: Spirit Media Inc.
 
 ## Contact Info
 
-- Address: 8045 Arco Corporate Drive STE 130, Raleigh, NC 27617
+- Address: 205 S Academy Street, Unit 3251, Cary, NC 27519
 - Phone: (888) 800-3744
 - Email: office@smgives.org / info@smgives.org
 
@@ -74,7 +74,7 @@ Parent: Spirit Media Inc.
 
 - Givebutter (primary — external links)
 - ACH: Spirit Media Charities / Coastal Federal Credit Union / Routing: 253175494 / Account: 10010001599596
-- Check: Spirit Media Charities, 8045 Arco Corporate Drive STE 130, Raleigh, NC 27617
+- Check: Spirit Media Charities, 205 S Academy Street, Unit 3251, Cary, NC 27519
 
 ## Known Issues
 

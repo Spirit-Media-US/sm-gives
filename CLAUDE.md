@@ -14,7 +14,7 @@ This site: SM Gives | Repo: github.com/Spirit-Media-US/sm-gives | Domain: smgive
 - Spirit Media Charities (DBA "SM Gives")
 - 501(c)(3) tax-exempt nonprofit
 - Parent: Spirit Media Inc. (covers all operational costs)
-- Address: 8045 Arco Corporate Drive STE 130, Raleigh, NC 27617
+- Address: 205 S Academy Street, Unit 3251, Cary, NC 27519
 - Phone: (888) 800-3744
 - Email: office@smgives.org
 

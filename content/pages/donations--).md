@@ -155,7 +155,7 @@ To donate by check please use:
 **Spirit Media Charities**
 
  
-8045 Arco Corporate Drive STE 130 Raleigh, NC 27617
+205 S Academy Street, Unit 3251, Cary, NC 27519
 
  
 All gifts tax-deductible as allowed by the IRS.
