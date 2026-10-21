@@ -53,7 +53,6 @@ We empower generous donors to share life giving resources with high need populat
 
 ## Donation Methods (#give-now)
 
-- Text "Give" to (833) 255-2177
 - ACH: Spirit Media Charities / Coastal Federal Credit Union / Routing: 253175494 / Account: 10010001599596
 - Check: Spirit Media Charities, 8045 Arco Corporate Drive STE 130, Raleigh, NC 27617
 - "100% of your gift — Spirit Media Inc covers all the management cost for Spirit Media Charities so that 100% of every gift goes to the project being funded. On behalf of everyone at Spirit Media, thank you for your generous support!"

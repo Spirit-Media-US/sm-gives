@@ -137,7 +137,7 @@ We empower generous donors to share life giving resources with high need populat
 
  [For more information contact us](mailto:info@smgives.org) 
  [GIVE NOW](https://wordpress-1227270-4701771.cloudwaysapps.com/gives/#give-now) 
-Used where needed most or, you can Text “**Give**” to **(833) 255-2177** to donate by phone.
+Used where needed most.
 
  
 To donate by ACH transfer, please use this information:
